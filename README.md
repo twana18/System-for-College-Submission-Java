@@ -82,3 +82,20 @@ This project is will be done by the team and will be seeing by us till 2 years i
 this project is requested by L.polla Fattah the period is 10 Weeks
 every week it will cover a request from him and every 2 weeks will review the last and add the new request to the system.
 
+
+## The Tool and Program used:
+The Programing language used is :
+- java
+
+The Tool used is :
+- Intellij IDE
+- Eclipse IDE
+- Visual Studio Code
+- Github 
+
+## To contact us the link below
+-  [Twana Abubakr ](mailto:gimal@gmail.com)
+-  [Hast Sarbaz ](mailto:gimal@gmail.com)
+-  [Muhammed Jasim ](mailto:gimal@gmail.com)
+-  [Shallaw Faris ](mailto:gimal@gmail.com)
+-  [Emad Adil ](mailto:gimal@gmail.com?subject)
