@@ -74,3 +74,11 @@ Because the project has two levels (Administrator & Students) the functionality 
     - Export the form
     - Submit the form
 
+## Ongoing  Support / maintenance  
+This project is will be done by the team and will be seeing by us till 2 years if only need maintaining problems but the support for adding new feature  in the future it will add new budget depend on the requirement and the time.
+
+
+## Milestone & Deadline 
+this project is requested by L.polla Fattah the period is 10 Weeks
+every week it will cover a request from him and every 2 weeks will review the last and add the new request to the system.
+
