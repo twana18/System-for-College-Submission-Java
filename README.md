@@ -39,5 +39,38 @@ the phase start with gathering requirements & Analysis, then Design, and plannin
 
 ## Content Structure 
 The content is will be in the same in the below Diagram architecture :
+
 ![ACP Project](https://user-images.githubusercontent.com/69985235/194930782-4d09bf80-6f9d-4567-b8f0-dfce4d68ea61.png)
+
+
+## Functionality 
+Because the project has two levels (Administrator & Students) the functionality of each one is different and in order to separate their  functionality we need to login:
+1. LOG IN 
+   - ADD ID
+   - ADD PASSWORD
+  
+2. ADMINSTRATOR
+   - ADD University 
+       - ADD Id
+       - ADD Name
+       - ADD College
+   - ADD Colleges
+       - ADD ID
+       - ADD Name
+       - ADD Department
+       - Edit Departments
+    - ADD Department 
+       - ADD ID
+       - ADD Name
+       - Specify number of students
+       - Edit number of students
+       - Edit Name of the Department
+       - Delete Department
+    - Reset Student form
+ 3. STUDENTS  
+    - Select departments
+    - Arrange departments by order
+    - Remove Department in the form
+    - Export the form
+    - Submit the form
 
