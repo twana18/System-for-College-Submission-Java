@@ -31,3 +31,13 @@ responsible for Building and Designing the project.
 ## Goals
   1. It will help students to select those departments that he want.
   2. Facilitates the process of accepting students.
+  
+## Phase 
+In this project, we use the Waterfall -model because we wanna prepare and complete the project one at a time.
+
+the phase start with gathering requirements & Analysis, then Design, and planning for the system .after that will start coding the project(implementation). Then the testing phase(Verification) for our project but depends on the deadline. Finally the deployment of our project.
+
+## Content Structure 
+The content is will be in the same in the below Diagram architecture :
+![ACP Project](https://user-images.githubusercontent.com/69985235/194930782-4d09bf80-6f9d-4567-b8f0-dfce4d68ea61.png)
+
