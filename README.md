@@ -6,7 +6,7 @@ Is a system that created for Senior students that wanna come to College. The Sys
 ## Is For Who?
 this project is for :
   1. Ministry of Higher Education.
-  2. Stdents.
+  2. Students.
 
 ## What is Required ?
 #### it can work in those Devices
