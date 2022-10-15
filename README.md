@@ -1,7 +1,7 @@
 # System-for-College-Submission-Java
 
 ## Simple Description
-Is a system that created for Senior students that wanna come to College. The System has two levels in characters face (Adminstrator, Students). Each of the users has its functionalities. The Adminstrator is Ministry of Higher Education. The Adminstrator can Add Universities, Colleges and departments to the system, and also can specify the number of students for each department, can control the forms of each student, and should provide a data that contain the sudents information. The students can select the departments that he want ...etc.
+Is a system that created for Senior students that want to come to College. The System has two levels in characters face (Adminstrator, Students). Each of the users has its functionalities. The Adminstrator is Ministry of Higher Education. The Adminstrator can Add Universities, Colleges and departments to the system, and also can specify the number of students for each department, can control the forms of each student, and should provide a data that contain the sudents information. The students can select the departments that he want ...etc.
 
 ## Is For Who?
 this project is for :
@@ -10,7 +10,7 @@ this project is for :
 
 ## What is Required ?
 #### it can work in those Devices
- - Any smart device(PC, laptop, Smart phone).     
+ - Any smart device(PC, laptop, Smart phone) with browser.     
 
 ## Team
 - Hast Sarbaz Sadraldin     
@@ -33,7 +33,7 @@ responsible for Building and Designing the project.
   2. Facilitates the process of accepting students.
   
 ## Phase 
-In this project, we use the Waterfall -model because we wanna prepare and complete the project one at a time.
+In this project, we use the Waterfall-model because we want to prepare and complete the project one at a time.
 
 the phase start with gathering requirements & Analysis, then Design, and planning for the system .after that will start coding the project(implementation). Then the testing phase(Verification) for our project but depends on the deadline. Finally the deployment of our project.
 
@@ -75,12 +75,11 @@ Because the project has two levels (Administrator & Students) the functionality 
     - Submit the form
 
 ## Ongoing  Support / maintenance  
-This project is will be done by the team and will be seeing by us till 2 years if only need maintaining problems but the support for adding new feature  in the future it will add new budget depend on the requirement and the time.
+This project will be done by the team and will be supported till 2 years if only need maintaining problems but the support for adding new feature in the future, it will add new budget depend on the requirement and the time.
 
 
 ## Milestone & Deadline 
-this project is requested by L.polla Fattah the period is 10 Weeks
-every week it will cover a request from him and every 2 weeks will review the last and add the new request to the system.
+this project is requested by Dr. Polla Fattah the period is 10 Weeks, every week we will cover a request from him and every 2 weeks, we will review the last and add the new request to the system.
 
 
 ## The Tool and Program used:
@@ -88,12 +87,12 @@ The Programing language used is :
 - java
 
 The Tool used is :
-- Intellij IDE
+- intellij IDE
 - Eclipse IDE
 - Visual Studio Code
 - Github 
 
-## To contact us the link below
+## Contact the team members via links below 
 -  [Twana Abubakr ](mailto:gimal@gmail.com)
 -  [Hast Sarbaz ](mailto:gimal@gmail.com)
 -  [Muhammed Jasim ](mailto:gimal@gmail.com)
