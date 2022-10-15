@@ -23,7 +23,13 @@ public class Student {
         this.subjectsAndGrades = subjectsAndGrades;
     }
 
-    
+    private void calcualteAverage(){
+        Collection<Double> grades = subjectsAndGrades.values();
+        for (Double g : grades) {
+            this.gradesAverage += g;
+        }
+    }
+
     
 
     public String getId() { return id;}
