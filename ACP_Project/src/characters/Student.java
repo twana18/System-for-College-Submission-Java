@@ -21,13 +21,16 @@ public class Student {
         password = studentPassword;
         type = studentType;
         this.subjectsAndGrades = subjectsAndGrades;
+        calculateAverage();
     }
 
     private void calcualteAverage(){
         Collection<Double> grades = subjectsAndGrades.values();
+        double avg = 0.0;
         for (Double g : grades) {
-            this.gradesAverage += g;
+            avg += g;
         }
+        this.gradesAverage = avg / grades.size();
     }
 
     
