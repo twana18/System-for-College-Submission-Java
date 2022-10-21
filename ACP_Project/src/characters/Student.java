@@ -1,6 +1,6 @@
 package characters;
 
-import Enums.StudentType;
+import Enums.SchoolStudyType;
 
 import java.util.*;
 
@@ -8,42 +8,79 @@ public class Student {
     private final String id;
     private final String name;
     private final String password;
-    private final StudentType type;
-    private HashMap<String, Double> subjectsAndGrades;
+    private final String gender;
+    private final String dateOfBirth;
+    private final SchoolStudyType type;
+    private HashMap<String, Double> subjectsAndGrades = new HashMap<String, Double>();
+    private double gradesTotal;
     private double gradesAverage = 0.0;
-    public TreeSet<String> availableDepartments;
     public LinkedList<String> filledDepartments;
 
-    public Student(String studentId, String studentName, String studentPassword, StudentType studentType,
-                   HashMap<String, Double> subjectsAndGrades) {
+
+    public Student(String studentId, String studentName, String studentPassword, String studentGender,
+            String studentDateOfBirth, SchoolStudyType type, List<String> subjects, List<Double> grades) {
         id = studentId;
         name = studentName;
         password = studentPassword;
-        type = studentType;
-        this.subjectsAndGrades = subjectsAndGrades;
-        calculateAverage();
+        gender = studentGender;
+        dateOfBirth = studentDateOfBirth;
+        this.type = type;
+        setSubjectsAndGrades(subjects, grades);
+        this.gradesTotal = calculateTotalOfGrades();
+        calculateAverageOfGrades();
     }
 
-    private void calcualteAverage(){
+    private double calculateTotalOfGrades() {
         Collection<Double> grades = subjectsAndGrades.values();
-        double avg = 0.0;
+        double total = 0.0;
         for (Double g : grades) {
-            avg += g;
+            total += g;
         }
-        this.gradesAverage = avg / grades.size();
+        return total;
     }
 
-    
+    private void calculateAverageOfGrades() {
+        this.gradesAverage = gradesTotal / subjectsAndGrades.values().size();
+    }
 
-    public String getId() { return id;}
+    private void setSubjectsAndGrades(List<String> subjects, List<Double> grades) {
+        Iterator<String> iterator1 = subjects.stream().iterator();
+        Iterator<Double> iterator2 = grades.stream().iterator();
+        try {
+            while (iterator1.hasNext() && iterator2.hasNext()){
+                subjectsAndGrades.put(iterator1.next(), iterator2.next());
+            }
+        }catch (NoSuchElementException e){
+            System.out.println(e);
+        }
+    }
 
-    public String getName() { return name; }
+    public String getId() {
+        return id;
+    }
 
-    public String getPassword() { return password; }
+    public String getName() {
+        return name;
+    }
 
-    public StudentType getType() { return type; }
+    public String getPassword() {
+        return password;
+    }
 
-    public HashMap<String, Double> getSubjectsAndGrades() { return subjectsAndGrades; }
+    public SchoolStudyType getType() {
+        return type;
+    }
 
-    public double getGradesAverage() { return gradesAverage; }
+    public HashMap<String, Double> getSubjectsAndGrades() {
+        return subjectsAndGrades;
+    }
+
+    public double getGradesTotal() {
+        return gradesTotal;
+    }
+
+    public double getGradesAverage() {
+        return gradesAverage;
+    }
+
 }
