@@ -1,6 +1,6 @@
 package Enums;
 
-public enum StudentType {
+public enum SchoolStudyType {
     Zansty,
     Wezhaiy,
     Ayny,
