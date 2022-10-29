@@ -93,6 +93,102 @@ public class DepartmentsProvider {
     }
     
     
+    public static void ZanstysubmitChanges() throws IOException, ClassNotFoundException {
+        if(isChanged) {
+            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("src/DataFiles/Departments_Zansty.txt"));
+            outputStream.writeObject(ZanstyDepartmentHolder);
+            outputStream.close();
+            ZanstyDepartmentHolder.clear();
+            isChanged = false;
+            getZanstydept();
+        }else {
+                System.out.println("Please add or remove at least a University");
+            }
+
+    }
+    
+    public static void WezhaiysubmitChanges() throws IOException, ClassNotFoundException {
+        if(isChanged) {
+        	ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("src/DataFiles/Departments_Wezhaiy.txt"));
+            outputStream.writeObject(WezhaiyDepartmentHolder);
+            outputStream.close();
+            WezhaiyDepartmentHolder.clear();
+            isChanged = false;
+            getWezhaiydept();
+        }else {
+                System.out.println("Please add or remove at least a University");
+            }
+      
+    }
+    public static void AynysubmitChanges() throws IOException, ClassNotFoundException {
+        if(isChanged) {
+        	ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("src/DataFiles/Departments_Ayny.txt"));
+            outputStream.writeObject(AynyDepartmentHolder);
+            outputStream.close();
+            AynyDepartmentHolder.clear();
+            isChanged = false;
+            getAynydept();
+        }else {
+                System.out.println("Please add or remove at least a University");
+            }
+    }
+   
+    public static void ZanstytestMethod() throws IOException, ClassNotFoundException {
+        System.out.println("Zansty Department before getting data: " + ZanstyDepartmentHolder);
+        getZanstydept();
+        System.out.println("Zansty Department after getting data: " + ZanstyDepartmentHolder);
+        ZanstysubmitChanges();
+        adddept("1",SchoolStudyType.Zansty,"Test","Test","Test",30);
+        adddept("2",SchoolStudyType.Zansty,"","","",35);
+        getZanstydept();
+        ZanstysubmitChanges();
+        adddept("1",SchoolStudyType.Zansty,"","","",30);
+        adddept("2",SchoolStudyType.Zansty,"","","",35);
+        ZanstysubmitChanges();
+        System.out.println("Zansty Department after submitting changes: " + ZanstyDepartmentHolder);
+        removedept("1",SchoolStudyType.Zansty);
+        removedept("2",SchoolStudyType.Zansty);
+        ZanstysubmitChanges();
+        System.out.println("Zansty Department after submitting changes: " + ZanstyDepartmentHolder);
+    }
+    
+    public static void WezhaiytestMethod() throws IOException, ClassNotFoundException {
+        System.out.println("Wezhaiy Department before getting data: " + WezhaiyDepartmentHolder);
+        getWezhaiydept();
+        System.out.println("Wezhaiy Department after getting data: " + WezhaiyDepartmentHolder);
+        WezhaiysubmitChanges();
+        adddept("dept05",SchoolStudyType.Wezhaiy,"07","04","English Department",30);
+        adddept("2",SchoolStudyType.Wezhaiy,"","","",35);
+        getWezhaiydept();
+        WezhaiysubmitChanges();
+        adddept("1",SchoolStudyType.Wezhaiy,"","","",30);
+        adddept("2",SchoolStudyType.Wezhaiy,"","","",35);
+        WezhaiysubmitChanges();
+        System.out.println("Wezhaiy Department after submitting changes: " + WezhaiyDepartmentHolder);
+        removedept("1",SchoolStudyType.Wezhaiy);
+        removedept("2",SchoolStudyType.Wezhaiy);
+        WezhaiysubmitChanges();
+        System.out.println("Wezhaiy Department after submitting changes: " + WezhaiyDepartmentHolder);
+    }
+    
+    public static void AynytestMethod() throws IOException, ClassNotFoundException {
+        System.out.println("Ayny Department before getting data: " + AynyDepartmentHolder);
+        getAynydept();
+        System.out.println("Ayny Department after getting data: " + AynyDepartmentHolder);
+        AynysubmitChanges();
+        adddept("1",SchoolStudyType.Ayny,"","","",30);
+        adddept("2",SchoolStudyType.Ayny,"","","",35);
+        getAynydept();
+        AynysubmitChanges();
+        adddept("1",SchoolStudyType.Ayny,"","","",30);
+        adddept("2",SchoolStudyType.Ayny,"","","",35);
+        AynysubmitChanges();
+        System.out.println("Ayny Department after submitting changes: " + AynyDepartmentHolder);
+        removedept("1",SchoolStudyType.Ayny);
+        removedept("2",SchoolStudyType.Ayny);
+        AynysubmitChanges();
+        System.out.println("Ayny Department after submitting changes: " + AynyDepartmentHolder);
+    }
 
 
 
