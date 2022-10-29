@@ -1,3 +1,3 @@
 package university_information;
-
-public record College(String id, String name) {}
+import java.io.Serializable;
+public record College(String id, String name) implements Serializable {}
