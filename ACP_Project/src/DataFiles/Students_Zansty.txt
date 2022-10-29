@@ -1,0 +1,32 @@
+¬í sr java.util.ArrayListxÒÇa I sizexp   w   sr characters.StudentKEùÇ¯- L dateOfBirtht Ljava/lang/String;L filledDepartmentst Ljava/util/LinkedList;L genderq ~ L idq ~ L nameq ~ L passwordq ~ L subjectsAndGradest Ljava/util/HashMap;L typet LEnums/SchoolStudyType;xpt 	20-4-2003pt Malet S00001t Twana Abubakr Abdullat 12345678sr java.util.HashMapÚÁÃ`Ñ F 
+loadFactorI 	thresholdxp?@     w      t Englishsr java.lang.Double³ÂJ)kû D valuexr java.lang.Number¬à  xp@X     t 	Chemistrysq ~ @V      t Arabicsq ~ @X     t Sciencesq ~ @Y      t Physicsq ~ @Y      t Mathsq ~ @X      t Kurdishsq ~ @Y      x~r Enums.SchoolStudyType          xr java.lang.Enum          xpt Zanstysq ~ t 	10-5-2002pq ~ 	t S00002t Emad Adil Qadrq ~ sq ~ 
+?@     w      q ~ sq ~ @X     q ~ sq ~ @W     q ~ sq ~ @W      q ~ sq ~ @V     q ~ sq ~ @X      q ~ sq ~ @X     q ~ sq ~ @Y      xq ~ !sq ~ t 
+13-10-2001pq ~ 	t S00003t Shallaw Fars Aliq ~ sq ~ 
+?@     w      q ~ sq ~ @W     q ~ sq ~ @W      q ~ sq ~ @X      q ~ sq ~ @Y      q ~ sq ~ @X      q ~ sq ~ @Y      q ~ sq ~ @S      xq ~ !sq ~ t 1-4-2001pq ~ 	t S00004t Chea Jasim Antarq ~ sq ~ 
+?@     w      q ~ sq ~ @X     q ~ sq ~ @V     q ~ sq ~ @S     q ~ sq ~ @Y      q ~ sq ~ @T      q ~ sq ~ @W      q ~ sq ~ @Y      xq ~ !sq ~ t 	20-5-2003pt FeMalet S00005t Dlnya Dlzar Botanq ~ sq ~ 
+?@     w      q ~ sq ~ @Q      q ~ sq ~ @M      q ~ sq ~ @Q     q ~ sq ~ @P      q ~ sq ~ @I      q ~ sq ~ @T      q ~ sq ~ @J      xq ~ !sq ~ t 	25-4-2002pq ~ It S00006t Tara Hama Abdullaq ~ sq ~ 
+?@     w      q ~ sq ~ @M      q ~ sq ~ @V      q ~ sq ~ @S     q ~ sq ~ @Q     q ~ sq ~ @N      q ~ sq ~ @M      q ~ sq ~ @T      xq ~ !sq ~ t 	20-6-2003pq ~ 	t S00007t Zana Abubakr Aliq ~ sq ~ 
+?@     w      q ~ sq ~ @V      q ~ sq ~ @V      q ~ sq ~ @X     q ~ sq ~ @V     q ~ sq ~ @T      q ~ sq ~ @X      q ~ sq ~ @Y      xq ~ !sq ~ q ~ <pq ~ It S00008t Shnyar Awni Shemaq ~ sq ~ 
+?@     w      q ~ sq ~ @X     q ~ sq ~ @X     q ~ sq ~ @X     q ~ sq ~ @Y      q ~ sq ~ @Y      q ~ sq ~ @X      q ~ sq ~ @Y      xq ~ !sq ~ t 1-6-2003pq ~ 	t S00009t Zryan Dno Abdullaq ~ sq ~ 
+?@     w      q ~ sq ~ @Q      q ~ sq ~ @Q      q ~ sq ~ @M      q ~ sq ~ @Q     q ~ sq ~ @N      q ~ sq ~ @L      q ~ sq ~ @Q     xq ~ !sq ~ t 
+10-10-2001pq ~ 	t S00010t Alan Hawez Hamaq ~ sq ~ 
+?@     w      q ~ sq ~ @Q      q ~ sq ~ @V      q ~ sq ~ @V      q ~ sq ~ @Q     q ~ sq ~ @V     q ~ sq ~ @S      q ~ sq ~ @Q     xq ~ !sq ~ q ~ pq ~ It S00011t Shara Shero Lasq ~ sq ~ 
+?@     w      q ~ sq ~ @X     q ~ sq ~ @V      q ~ sq ~ @X     q ~ sq ~ @Y      q ~ sq ~ @V     q ~ sq ~ @X      q ~ sq ~ @Y      xq ~ !sq ~ t 	20-7-2002pq ~ 	t S00012t Twana Jalal Kawaq ~ sq ~ 
+?@     w      q ~ sq ~ @X     q ~ sq ~ @T     q ~ sq ~ @V     q ~ sq ~ @Y      q ~ sq ~ @Y      q ~ sq ~ @X      q ~ sq ~ @Y      xq ~ !sq ~ t 2-4-2001pq ~ It S00013t Sara Aziz Khidirq ~ sq ~ 
+?@     w      q ~ sq ~ @X     q ~ sq ~ @V      q ~ sq ~ @X     q ~ sq ~ @Y      q ~ sq ~ @Y      q ~ sq ~ @X      q ~ sq ~ @Y      xq ~ !sq ~ t 
+20-12-2003pq ~ 	t S00014t 
+Las Said Zanaq ~ sq ~ 
+?@     w      q ~ sq ~ @V      q ~ sq ~ @V      q ~ sq ~ @W     q ~ sq ~ @Y      q ~ sq ~ @U     q ~ sq ~ @X      q ~ sq ~ @V     xq ~ !sq ~ t 	20-1-2000pq ~ It S00015t Zina Abdull Karimq ~ sq ~ 
+?@     w      q ~ sq ~ @X     q ~ sq ~ @X     q ~ sq ~ @X     q ~ sq ~ @Y      q ~ sq ~ @Y      q ~ sq ~ @X      q ~ sq ~ @Y      xq ~ !sq ~ t 	20-3-2003pq ~ 	t S00016t Karzan Saadi Hamaq ~ sq ~ 
+?@     w      q ~ sq ~ @S     q ~ sq ~ @Q     q ~ sq ~ @Q      q ~ sq ~ @K      q ~ sq ~ @I      q ~ sq ~ @P     q ~ sq ~ @Q     xq ~ !sq ~ t 2-9-2003pq ~ It S00017t Klara Abubakr Andamq ~ sq ~ 
+?@     w      q ~ sq ~ @X     q ~ sq ~ @V      q ~ sq ~ @X     q ~ sq ~ @V     q ~ sq ~ @Y      q ~ sq ~ @X      q ~ sq ~ @V     xq ~ !sq ~ t 
+20-10-2000pq ~ It S00018t Asma Ari Aliq ~ sq ~ 
+?@     w      q ~ sq ~ @Q      q ~ sq ~ @M      q ~ sq ~ @S     q ~ sq ~ @N      q ~ sq ~ @I      q ~ sq ~ @P     q ~ sq ~ @V     xq ~ !sq ~ t 	25-9-2003pq ~ It S00019t Ala Sami Abdullaq ~ sq ~ 
+?@     w      q ~ sq ~ @X     q ~ sq ~ @V      q ~ sq ~ @X     q ~ sq ~ @Y      q ~ sq ~ @V     q ~ sq ~ @X      q ~ sq ~ @W      xq ~ !sq ~ t 	26-3-2001pq ~ It S00020t Dalya Abubakr Zrebarq ~ sq ~ 
+?@     w      q ~ sq ~ @Q      q ~ sq ~ @Q      q ~ sq ~ @M      q ~ sq ~ @Q     q ~ sq ~ @T      q ~ sq ~ @L      q ~ sq ~ @T      xq ~ !sq ~ q ~ ¿pq ~ 	t S00021t Namiq Sdiq Abdullaq ~ sq ~ 
+?@     w      q ~ sq ~ @X     q ~ sq ~ @X     q ~ sq ~ @X     q ~ sq ~ @Y      q ~ sq ~ @Y      q ~ sq ~ @X      q ~ sq ~ @Y      xq ~ !sq ~ q ~ ³pq ~ 	t S00022t Dana Abuaala Abdullaq ~ sq ~ 
+?@     w      q ~ sq ~ @Q      q ~ sq ~ @M      q ~ sq ~ @M      q ~ sq ~ @I      q ~ sq ~ @N      q ~ sq ~ @S      q ~ sq ~ @I      xq ~ !sq ~ t 	20-2-2002pq ~ It S00023t Yallda Edo Kibarq ~ sq ~ 
+?@     w      q ~ sq ~ @X     q ~ sq ~ @X     q ~ sq ~ @X     q ~ sq ~ @Y      q ~ sq ~ @Y      q ~ sq ~ @X     q ~ sq ~ @Y      xq ~ !sq ~ t 	21-3-2003pq ~ 	t S00024t Matin Haji Nihhmalaq ~ sq ~ 
+?@     w      q ~ sq ~ @S     q ~ sq ~ @V      q ~ sq ~ @Q      q ~ sq ~ @Q     q ~ sq ~ @V     q ~ sq ~ @P     q ~ sq ~ @T      xq ~ !sq ~ t 
+20-11-2003pq ~ It S00025t Bilia Muhammad Aliq ~ sq ~ 
+?@     w      q ~ sq ~ @S     q ~ sq ~ @V      q ~ sq ~ @V      q ~ sq ~ @Q     q ~ sq ~ @V     q ~ sq ~ @T      q ~ sq ~ @V     xq ~ !x
