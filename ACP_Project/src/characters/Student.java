@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Student {
+public class Student implements Serializable {
     private final String id;
     private final String name;
     private final String password;
