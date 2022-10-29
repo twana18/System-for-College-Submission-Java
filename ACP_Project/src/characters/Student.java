@@ -2,7 +2,9 @@ package characters;
 
 import Enums.SchoolStudyType;
 
+import java.io.Serializable;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Student {
     private final String id;
@@ -12,13 +14,11 @@ public class Student {
     private final String dateOfBirth;
     private final SchoolStudyType type;
     private HashMap<String, Double> subjectsAndGrades = new HashMap<String, Double>();
-    private double gradesTotal;
-    private double gradesAverage = 0.0;
     public LinkedList<String> filledDepartments;
 
 
     public Student(String studentId, String studentName, String studentPassword, String studentGender,
-            String studentDateOfBirth, SchoolStudyType type, List<String> subjects, List<Double> grades) {
+                   String studentDateOfBirth, SchoolStudyType type, List<String> subjects, List<Double> grades) {
         id = studentId;
         name = studentName;
         password = studentPassword;
@@ -26,31 +26,32 @@ public class Student {
         dateOfBirth = studentDateOfBirth;
         this.type = type;
         setSubjectsAndGrades(subjects, grades);
-        this.gradesTotal = calculateTotalOfGrades();
-        calculateAverageOfGrades();
     }
 
-    private double calculateTotalOfGrades() {
-        Collection<Double> grades = subjectsAndGrades.values();
-        double total = 0.0;
-        for (Double g : grades) {
-            total += g;
-        }
-        return total;
-    }
-
-    private void calculateAverageOfGrades() {
-        this.gradesAverage = gradesTotal / subjectsAndGrades.values().size();
+    public DoubleSummaryStatistics gradeStats() {
+        return subjectsAndGrades
+                .values()
+                .stream()
+                .collect(Collectors.summarizingDouble(Double::doubleValue));
     }
 
     private void setSubjectsAndGrades(List<String> subjects, List<Double> grades) {
+        grades.forEach(g -> {
+            if (g == null){
+                grades.set(grades.indexOf(g), 00.00);
+            }
+        });
         Iterator<String> iterator1 = subjects.stream().iterator();
         Iterator<Double> iterator2 = grades.stream().iterator();
         try {
-            while (iterator1.hasNext() && iterator2.hasNext()){
-                subjectsAndGrades.put(iterator1.next(), iterator2.next());
+            while (iterator1.hasNext()) {
+                if (iterator2.hasNext()) {
+                    subjectsAndGrades.put(iterator1.next(), iterator2.next());
+                }else {
+                    subjectsAndGrades.put(iterator1.next(), 00.00);
+                }
             }
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             System.out.println(e);
         }
     }
@@ -67,20 +68,20 @@ public class Student {
         return password;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
     public SchoolStudyType getType() {
         return type;
     }
 
     public HashMap<String, Double> getSubjectsAndGrades() {
         return subjectsAndGrades;
-    }
-
-    public double getGradesTotal() {
-        return gradesTotal;
-    }
-
-    public double getGradesAverage() {
-        return gradesAverage;
     }
 
 }
