@@ -2,29 +2,68 @@ package providers;
 
 import characters.Adminstrator;
 
-import java.util.Arrays;
-import java.util.List;
+import java.io.*;
+import java.util.ArrayList;
 
 public class AdminstratorsProvider {
-    public static final List<Adminstrator> adminstrators = Arrays.asList(
-            new Adminstrator("A01", "Zhanyar Fatah Razaq", "12345678"),
-            new Adminstrator("A02", "Raz Ahmed Shwan"  , "12345678"),
-            new Adminstrator("A03", "Ahmed Ali Hama", "12345678"),
-            new Adminstrator("A04", "Rozhgar Namiq Rasull", "12345678"),
-            new Adminstrator("A05", "Siako Nadr Jalal", "12345678"),
-            new Adminstrator("A06", "Aso Shema Ali", "12345678"),
-            new Adminstrator("A07", "Rezhwan Nury Kawa", "12345678"),
-            new Adminstrator("A08", "Zana Aziz Khidir", "12345678"),
-            new Adminstrator("A09", "Mustafa Ako Nuri", "12345678"),
-            new Adminstrator("A10", "Salam Zyad Hawta", "12345678"),
-            new Adminstrator("A11", "Bawar Bayiz Muhammed", "12345678"),
-            new Adminstrator("A12", "Dara Aso Dara", "12345678"),
-            new Adminstrator("A13", "Dlzar Awlla Hamad", "12345678"),
-            new Adminstrator("A14", "Shno Aziz Mirza", "12345678"),
-            new Adminstrator("A15", "Shaho Fars Ali", "12345678"),
-            new Adminstrator("A16", "Ali Hamad Husen", "12345678"),
-            new Adminstrator("A17", "Ania Ari Ali", "12345678"),
-            new Adminstrator("A18", "Rahand Jalal Hamid", "12345678"),
-            new Adminstrator("A19", "Dlyar Zhewar Hawez", "12345678"),
-            new Adminstrator("A20", "Shallaw Ahmad Muhamad", "12345678"));
+
+    public static ArrayList<Adminstrator> adminstratorsHolder = new ArrayList<>();
+    public static boolean isChanged = false;
+
+    public static void getAdminstrators() throws IOException, ClassNotFoundException {
+        ObjectInputStream reader = new ObjectInputStream(new FileInputStream("src/DataFiles/Adminstrators.txt"));
+        adminstratorsHolder = (ArrayList<Adminstrator>) reader.readObject();
+        reader.close();
+        if (isChanged) {
+            isChanged = false;
+            System.out.println("Changes canceled");
+        }
+    }
+
+    public static void addAdminstrator(String id, String name, String password) {
+        adminstratorsHolder.add(0, new Adminstrator(id, name, password));
+        if (!isChanged) {
+            isChanged = true;
+        }
+    }
+
+    public static void removeAdminstrator(String id) {
+        adminstratorsHolder.removeIf(admin -> admin.id().equals(id));
+        if (!isChanged) {
+            isChanged = true;
+        }
+    }
+
+    public static void submitChanges() throws IOException, ClassNotFoundException {
+        if (isChanged) {
+            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("src/DataFiles/Adminstrators.txt"));
+            outputStream.writeObject(adminstratorsHolder);
+            outputStream.close();
+            adminstratorsHolder.clear();
+            isChanged = false;
+            getAdminstrators();
+        } else {
+            System.out.println("Please add or remove at least an Adminstrator");
+        }
+    }
+
+    public static void testMethod() throws IOException, ClassNotFoundException {
+        System.out.println("Adminstrators before getting data: " + adminstratorsHolder);
+        getAdminstrators();
+        System.out.println("Adminstrators after getting data: " + adminstratorsHolder);
+        submitChanges();
+        addAdminstrator("1", "its Me", "12345678");
+        addAdminstrator("2", "its Me", "12345678");
+        getAdminstrators();
+        submitChanges();
+        addAdminstrator("1", "its Me", "12345678");
+        addAdminstrator("2", "its Me", "12345678");
+        submitChanges();
+        System.out.println("Adminstrators after submitting data: " + adminstratorsHolder);
+        removeAdminstrator("1");
+        removeAdminstrator("2");
+        submitChanges();
+        System.out.println("Adminstrators after submitting data: " + adminstratorsHolder);
+    }
+
 }
