@@ -1,69 +1,100 @@
 package providers;
 
 import characters.Adminstrator;
+package providers;
+import Enums.SchoolStudyType;
+import university_information.Department;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
-import java.io.*;
-import java.util.ArrayList;
+public class DepartmentsProvider {
+	
+	public static void main(String[] args) {
+		
+		
+	}
+    public static HashMap<List<String>, Department> ZanstyDepartmentHolder = new HashMap<>();
+    public static HashMap<List<String>, Department> WezhaiyDepartmentHolder = new HashMap<>();
+    public static HashMap<List<String>, Department> AynyDepartmentHolder = new HashMap<>();
+    private static boolean isChanged = false;
 
-public class AdminstratorsProvider {
-
-    public static ArrayList<Adminstrator> adminstratorsHolder = new ArrayList<>();
-    public static boolean isChanged = false;
-
-    public static void getAdminstrators() throws IOException, ClassNotFoundException {
-        ObjectInputStream reader = new ObjectInputStream(new FileInputStream("src/DataFiles/Adminstrators.txt"));
-        adminstratorsHolder = (ArrayList<Adminstrator>) reader.readObject();
+    public static void getZanstydept() throws IOException, ClassNotFoundException {
+        ObjectInputStream reader = new ObjectInputStream(new FileInputStream("src/DataFiles/Departments_Zansty.txt"));
+        ZanstyDepartmentHolder = (HashMap<List<String>, Department>) reader.readObject();
         reader.close();
         if (isChanged) {
             isChanged = false;
             System.out.println("Changes canceled");
         }
     }
-
-    public static void addAdminstrator(String id, String name, String password) {
-        adminstratorsHolder.add(0, new Adminstrator(id, name, password));
-        if (!isChanged) {
-            isChanged = true;
-        }
-    }
-
-    public static void removeAdminstrator(String id) {
-        adminstratorsHolder.removeIf(admin -> admin.id().equals(id));
-        if (!isChanged) {
-            isChanged = true;
-        }
-    }
-
-    public static void submitChanges() throws IOException, ClassNotFoundException {
+    public static void getWezhaiydept() throws IOException, ClassNotFoundException {
+        ObjectInputStream reader = new ObjectInputStream(new FileInputStream("src/DataFiles/Departments_Wezhaiy.txt"));
+        WezhaiyDepartmentHolder = (HashMap<List<String>, Department>) reader.readObject();
+        reader.close();
         if (isChanged) {
-            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("src/DataFiles/Adminstrators.txt"));
-            outputStream.writeObject(adminstratorsHolder);
-            outputStream.close();
-            adminstratorsHolder.clear();
             isChanged = false;
-            getAdminstrators();
-        } else {
-            System.out.println("Please add or remove at least an Adminstrator");
+            System.out.println("Changes canceled");
         }
     }
-
-    public static void testMethod() throws IOException, ClassNotFoundException {
-        System.out.println("Adminstrators before getting data: " + adminstratorsHolder);
-        getAdminstrators();
-        System.out.println("Adminstrators after getting data: " + adminstratorsHolder);
-        submitChanges();
-        addAdminstrator("1", "its Me", "12345678");
-        addAdminstrator("2", "its Me", "12345678");
-        getAdminstrators();
-        submitChanges();
-        addAdminstrator("1", "its Me", "12345678");
-        addAdminstrator("2", "its Me", "12345678");
-        submitChanges();
-        System.out.println("Adminstrators after submitting data: " + adminstratorsHolder);
-        removeAdminstrator("1");
-        removeAdminstrator("2");
-        submitChanges();
-        System.out.println("Adminstrators after submitting data: " + adminstratorsHolder);
+    public static void getAynydept() throws IOException, ClassNotFoundException {
+        ObjectInputStream reader = new ObjectInputStream(new FileInputStream("src/DataFiles/Departments_Ayny.txt"));
+        AynyDepartmentHolder = (HashMap<List<String>, Department>) reader.readObject();
+        reader.close();
+        if (isChanged) {
+            isChanged = false;
+            System.out.println("Changes canceled");
+        }
     }
+    
+    public static void removedept(String deptID, SchoolStudyType type) {
+    	if (type == SchoolStudyType.Zansty) {
+    		ZanstyDepartmentHolder.remove(deptID);
+    		
+		}
+    	if (type == SchoolStudyType.Wezhaiy) {
+    		WezhaiyDepartmentHolder.remove(deptID);
+    		
+		}
+    	if (type == SchoolStudyType.Ayny) {
+    		AynyDepartmentHolder.remove(deptID);
+    		
+		}
+    	
+    	 if (!isChanged) {
+             isChanged = true;
+         }
+    }
+
+    public static void adddept(String deptID, SchoolStudyType type,String universityID, String collegeID, String deptName, int deptCapacity) {
+    	if (type == SchoolStudyType.Zansty) {
+    		ZanstyDepartmentHolder.put(Arrays.asList(universityID, collegeID, deptID), new Department(deptID, deptName, type, deptCapacity));
+    		
+    	}
+    	if (type == SchoolStudyType.Wezhaiy) {
+    		WezhaiyDepartmentHolder.put(Arrays.asList(universityID, collegeID, deptID), new Department(deptID, deptName, type, deptCapacity));
+    		
+    		}
+    	
+    	if (type == SchoolStudyType.Ayny) {
+    		AynyDepartmentHolder.put(Arrays.asList(universityID, collegeID, deptID), new Department(deptID, deptName, type, deptCapacity));
+    		
+    		}
+    	
+    	 if (!isChanged) {
+             isChanged = true;
+         }
+    
+    }
+    
+    
+
+
 
 }
+
