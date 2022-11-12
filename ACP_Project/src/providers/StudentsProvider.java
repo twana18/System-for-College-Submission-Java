@@ -41,4 +41,30 @@ public class StudentsProvider {
     public static ArrayList<Student> getAynyStudentsHolder() {
         return aynyStudentsHolder;
     }
+    
+    public static Student findStudent(String id, String password) throws IOException, ClassNotFoundException {
+        fetchZanstyStudents();
+        fetchWezhaiyStudents();
+        fetchAynyStudents();
+        Student found = null;
+        for (Student student : getZanstyStudentsHolder()) {
+            if (student.getId().equals(id) && student.getPassword().equals(password)) {
+                found = student;
+                break;
+            }
+        }
+        for (Student student : getWezhaiyStudentsHolder()) {
+            if (student.getId().equals(id) && student.getPassword().equals(password)) {
+                found = student;
+                break;
+            }
+        }
+        for (Student student : getAynyStudentsHolder()) {
+            if (student.getId().equals(id) && student.getPassword().equals(password)) {
+                found = student;
+                break;
+            }
+        }
+        return found;
+    }
 }
