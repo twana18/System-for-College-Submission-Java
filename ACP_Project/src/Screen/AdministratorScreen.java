@@ -161,32 +161,125 @@ public class AdminstratorScreen {
 	}
 	
 	
+	public static void menu() {
+
+        System.out.println("*************************************");
+        System.out.println("***********   WELCOME   *************");
+        System.out.println("*************************************");
+        System.out.println("******* [1]Add Admin ****************");
+        System.out.println("******* [2]Remove Admin *************");
+        System.out.println("******* [3]Add Department ***********");
+        System.out.println("******* [4]Remove Department ********");
+        System.out.println("******* [5]Add College **************");
+        System.out.println("******* [6]Remove College ***********");
+        System.out.println("******* [7]Add University ***********");
+        System.out.println("******* [8]Remove University ********");
+        System.out.println("******* [9]Show Admins **************");
+        System.out.println("******* [10]Edit Profile ************");
+        System.out.println("******* [11]System Exit *************");
+        System.out.println("*************************************");
+
+    }
+
+    public static void addAdmin(String id,String name,String password) throws ClassNotFoundException, IOException {
+
+
+        providers.AdminstratorsProvider.fetchAdminstrators();
+        providers.AdminstratorsProvider.addAdminstrator(id, name, password);
+        providers.AdminstratorsProvider.submitChanges();
+
+    }
+
+    public static void removeAdmin(String id) throws ClassNotFoundException, IOException {
+
+
+        providers.AdminstratorsProvider.fetchAdminstrators();
+        providers.AdminstratorsProvider.removeAdminstrator(id);
+        providers.AdminstratorsProvider.submitChanges();
+
+    }
+
+    public static void addDepartment(String universityID,String collegeID,String departmentID,String departmentname, char school,int capacity ) throws ClassNotFoundException, IOException {
+
+        if(school=='Z') {
+            providers.DepartmentsProvider.fetchZanstyDepartments();
+            providers.DepartmentsProvider.addDepartment(universityID,collegeID,departmentID,departmentname, SchoolStudyType.Zansty,capacity);
+            providers.DepartmentsProvider.zanstySubmitChanges();
+
+        }else if (school=='W') {
+            providers.DepartmentsProvider.fetchWezhaiyDepartments();
+            providers.DepartmentsProvider.addDepartment(universityID,collegeID,departmentID,departmentname, SchoolStudyType.Wezhaiy,capacity);
+            providers.DepartmentsProvider.wezhaiySubmitChanges();
+
+        }else if (school=='A') {
+            providers.DepartmentsProvider.fetchAynyDepartments();
+            providers.DepartmentsProvider.addDepartment(universityID,collegeID,departmentID,departmentname, SchoolStudyType.Ayny,capacity);
+            providers.DepartmentsProvider.aynySubmitChanges();
+
+        } else {
+            System.out.println("Input invalid Please Enter School type Carefully");
+        }
+
+
+
+
+    }
+    public static void removeDepartment(String departmentID,String collegeID,String universityID,char school) throws ClassNotFoundException, IOException {
+
+        if(school=='Z') {
+            providers.DepartmentsProvider.fetchZanstyDepartments();
+            providers.DepartmentsProvider.removeDepartment(universityID,collegeID,departmentID, SchoolStudyType.Zansty);
+            providers.DepartmentsProvider.zanstySubmitChanges();
+
+        }else if (school=='W') {
+            providers.DepartmentsProvider.fetchWezhaiyDepartments();
+            providers.DepartmentsProvider.removeDepartment(universityID,collegeID,departmentID, SchoolStudyType.Wezhaiy);
+            providers.DepartmentsProvider.wezhaiySubmitChanges();
+
+        }else if (school=='A') {
+            providers.DepartmentsProvider.fetchAynyDepartments();
+            providers.DepartmentsProvider.removeDepartment(universityID,collegeID,departmentID, SchoolStudyType.Ayny);
+            providers.DepartmentsProvider.aynySubmitChanges();
+
+
+        } else {
+            System.out.println("Input invalid Please Enter School type Carefully");
+        }
+    }
+
+
+    public static void addCollege(String universityID, String collegeID, String name) {
+
+        providers.CollegesProvider.addCollege(universityID, collegeID, name);
+
+    }
+
+
+    public static void removeCollege(String collegeID, String universityID) {
+
+        providers.CollegesProvider.removeCollege(universityID, collegeID);
+
+    }
+
+
+    public static void addUniversity(String universityID, String name, String location) throws ClassNotFoundException, IOException {
+
+
+        providers.UniversitiesProvider.fetchUniversities();
+        providers.UniversitiesProvider.addUniversity(universityID, name, location);
+        providers.UniversitiesProvider.submitChanges();
+
+    }
+    public static void removeUniversity(String universityID) throws ClassNotFoundException, IOException {
+
+
+        providers.UniversitiesProvider.fetchUniversities();
+        providers.UniversitiesProvider.removeUniversity(universityID);
+        providers.UniversitiesProvider.submitChanges();
+
+    }
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 public static void showAllAdmins() throws ClassNotFoundException, IOException {
 		String str;
