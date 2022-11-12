@@ -1,103 +1,162 @@
 package providers;
 
-import Custom_Generic_Classes_Interfaces.TripleContainer;
 import Enums.SchoolStudyType;
 import university_information.Department;
-import java.util.*;
-import java.util.HashMap;
+
 import java.io.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public class DepartmentsProvider {
-    public static HashMap<List<String>, Department> DEPARTMENTSforZansty = new HashMap<>();
-    public static HashMap<List<String>, Department> DEPARTMENTSforWezhaiy = new HashMap<>();
-    public static HashMap<List<String>, Department> DEPARTMENTSforAyny = new HashMap<>();
+    private static HashMap<List<String>, Department> ZanstyDepartmentHolder = new HashMap<>();
+    private static HashMap<List<String>, Department> WezhaiyDepartmentHolder = new HashMap<>();
+    private static HashMap<List<String>, Department> AynyDepartmentHolder = new HashMap<>();
 
-    public static void gettingData(){
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL01" , "dept01"), new Department("dept01" ,"Department of Architecture Engineering" ,SchoolStudyType.Zansty,50 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL01" , "dept02"), new Department("dept02" ,"Department of Civil Engineering" ,SchoolStudyType.Zansty,65 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL01" , "dept03"), new Department("dept03" ,"Department of Electrical Engineering" ,SchoolStudyType.Zansty,75 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL01" , "dept04"), new Department("dept04" ,"Department of Software Engineering" ,SchoolStudyType.Zansty,70 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL01" , "dept05"), new Department("dept05" ,"Department of Mechanical Engineering" ,SchoolStudyType.Zansty,80 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL01" , "dept06"), new Department("dept06" ,"Department of Geomatic Engineering" ,SchoolStudyType.Zansty,90 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL02" , "dept01"), new Department("dept01" ,"Chemistry Department" ,SchoolStudyType.Zansty,58 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL02" , "dept02"), new Department("dept02" ,"Physics Department" ,SchoolStudyType.Zansty,52 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL02" , "dept03"), new Department("dept03" ,"Mathematics Department" ,SchoolStudyType.Zansty,75 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL02" , "dept01"), new Department("dept01" ,"Kurdish Language Department" ,SchoolStudyType.Zansty,50 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL02" , "dept02"), new Department("dept02" ,"Arabic Language Department" ,SchoolStudyType.Zansty,15));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL02" , "dept03"), new Department("dept03" ,"English Language Department" ,SchoolStudyType.Zansty,55 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL02" , "dept04"), new Department("dept04" ,"Sryani Language Department" ,SchoolStudyType.Zansty,40));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL02" , "dept05"), new Department("dept05" ,"Biology Department" ,SchoolStudyType.Zansty,65 ));
-        DEPARTMENTSforWezhaiy.put(Arrays.asList("UN01","COL02" , "dept02"), new Department("dept02" ,"Arabic Language Department" ,SchoolStudyType.Wezhaiy,20));
-        DEPARTMENTSforAyny.put(Arrays.asList("UN01", "COL02" , "dept02"), new Department("dept02","Arabic Language Department" ,SchoolStudyType.Ayny,30));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL03" , "dept01"), new Department("dept01" ,"Biology Department" ,SchoolStudyType.Zansty,55 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL03" , "dept02"), new Department("dept02" ,"Chemistry Department" ,SchoolStudyType.Zansty,68 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL03" , "dept03"), new Department("dept03" ,"IT Department" ,SchoolStudyType.Zansty,70 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL03" , "dept04"), new Department("dept04" ,"Computer Science Department" ,SchoolStudyType.Zansty,65 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL03" , "dept05"), new Department("dept05" ,"Mathematics Department" ,SchoolStudyType.Zansty,66 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL04" , "dept01"), new Department("dept01" ,"Department of Arts" ,SchoolStudyType.Zansty,20 ));
-        DEPARTMENTSforWezhaiy.put(Arrays.asList("UN01", "COL04" , "dept01"), new Department("dept01" ,"Department of Arts" ,SchoolStudyType.Zansty,45 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL05" , "dept01"), new Department("dept01" ,"Islamic Law Department" ,SchoolStudyType.Zansty,10 ));
-        DEPARTMENTSforWezhaiy.put(Arrays.asList("UN01", "COL05" , "dept01"), new Department("dept01" ,"Islamic Law Department" ,SchoolStudyType.Wezhaiy,15 ));
-        DEPARTMENTSforAyny.put(Arrays.asList("UN01", "COL05" , "dept01"), new Department( "dept01" ,"Islamic Law Department" ,SchoolStudyType.Ayny,35 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL06" , "dept01"), new Department( "dept01" ,"Department of Law" ,SchoolStudyType.Zansty,30 ));
-        DEPARTMENTSforWezhaiy.put(Arrays.asList("UN01", "COL06" , "dept01"), new Department( "dept01" ,"Department of Law" ,SchoolStudyType.Wezhaiy,45 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL07" , "dept01"), new Department("dept01" ,"All Departments" ,SchoolStudyType.Zansty,56 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL08" , "dept01"), new Department("dept01" ,"Department of Business Administration" ,SchoolStudyType.Zansty,40));
-        DEPARTMENTSforWezhaiy.put(Arrays.asList("UN01", "COL08" , "dept01"), new Department( "dept01" ,"Department of Business Administration" ,SchoolStudyType.Wezhaiy,25 ));
-        DEPARTMENTSforWezhaiy.put(Arrays.asList("UN01", "COL09" , "dept01"), new Department( "dept01" ,"Department of History" ,SchoolStudyType.Wezhaiy,40 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL09" , "dept01"), new Department( "dept01" ,"Department of History" ,SchoolStudyType.Wezhaiy,20 ));
-        DEPARTMENTSforWezhaiy.put(Arrays.asList("UN01", "COL09" , "dept02"), new Department( "dept02" ,"Department of Geography" ,SchoolStudyType.Wezhaiy,35 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL09" , "dept02"), new Department( "dept02" ,"Department of Geography" ,SchoolStudyType.Zansty,20 ));
-        DEPARTMENTSforWezhaiy.put(Arrays.asList("UN01", "COL10" , "dept03"), new Department( "dept03" ,"Arabic Department" ,SchoolStudyType.Wezhaiy,20 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN01", "COL10" , "dept03"), new Department( "dept03" ,"Arabic Department" ,SchoolStudyType.Zansty,15 ));
-        DEPARTMENTSforAyny.put(Arrays.asList("UN01", "COL10" , "dept03"), new Department( "dept03" ,"Arabic Department" ,SchoolStudyType.Ayny,35 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN02", "COL01" , "dept01"), new Department( "dept01" ,"Medicine Department" ,SchoolStudyType.Zansty,100 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN02", "COL02" , "dept01"), new Department( "dept01" ,"Dental Department" ,SchoolStudyType.Zansty,87 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN02", "COL03" , "dept01"), new Department( "dept01" ,"Pharmacy Department" ,SchoolStudyType.Zansty,75 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN03", "COL06" , "dept01"), new Department( "dept01" ,"Department of Law" ,SchoolStudyType.Zansty,25 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN03", "COL06" , "dept02"), new Department( "dept02" ,"Department of Political Science" ,SchoolStudyType.Zansty,20 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN03", "COL06" , "dept03"), new Department( "dept03" ,"International Relations Department" ,SchoolStudyType.Zansty,30 ));
-        DEPARTMENTSforWezhaiy.put(Arrays.asList("UN03", "COL06" , "dept01"), new Department( "dept01" ,"Department of Law" ,SchoolStudyType.Wezhaiy,20 ));
-        DEPARTMENTSforWezhaiy.put(Arrays.asList("UN03", "COL06" , "dept02"), new Department( "dept02" ,"Department of Political Science" ,SchoolStudyType.Wezhaiy,20 ));
-        DEPARTMENTSforWezhaiy.put(Arrays.asList("UN03", "COL06" , "dept03"), new Department( "dept03" ,"International Relations Department" ,SchoolStudyType.Wezhaiy,30 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN05", "COL01" , "dept01"), new Department( "dept01" ,"Department of Civil Engineering " ,SchoolStudyType.Zansty,48));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN05", "COL01" , "dept02"), new Department( "dept02" ,"Department of Energy and Mechanic Engineering" ,SchoolStudyType.Zansty,68 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN05", "COL01" , "dept03"), new Department( "dept03" ,"Department of System Information Engineering" ,SchoolStudyType.Zansty,55 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN05", "COL02" , "dept01"), new Department( "dept01" ,"Department of Pharmacy" ,SchoolStudyType.Zansty,65 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN05", "COL02" , "dept02"), new Department( "dept02" ,"Anesthesia Department" ,SchoolStudyType.Zansty,79 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN05", "COL02" , "dept03"), new Department( "dept03" ,"Disease Analysis Department" ,SchoolStudyType.Zansty,69 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN05", "COL02" , "dept04"), new Department( "dept04" ,"Dental Assisting Department" ,SchoolStudyType.Zansty,69 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN05", "COL03" , "dept01"), new Department( "dept01" ,"IT Department" ,SchoolStudyType.Zansty,77 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN05", "COL03" , "dept02"), new Department( "dept02" ,"ICT Department" ,SchoolStudyType.Zansty,86 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN05", "COL03" , "dept03"), new Department( "dept03" ,"Oil Technology Department" ,SchoolStudyType.Zansty,54 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN05", "COL03" , "dept04"), new Department( "dept04" ,"Electric Department" ,SchoolStudyType.Zansty,49 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN05", "COL04" , "dept01"), new Department( "dept01" ,"International Marketing Department" ,SchoolStudyType.Zansty,49 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN06", "COL01" , "dept01"), new Department( "dept01" ,"Mechanical Engineering Department" ,SchoolStudyType.Zansty,49 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN06", "COL01" , "dept02"), new Department( "dept02" ,"Oil and Energy Engineering Department" ,SchoolStudyType.Zansty,59 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN06", "COL02" , "dept01"), new Department( "dept01" ,"Department of Pharmacy" ,SchoolStudyType.Zansty,69 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN06", "COL02" , "dept02"), new Department( "dept02" ,"Anesthesia Department" ,SchoolStudyType.Zansty,85 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN06", "COL02" , "dept03"), new Department( "dept03" ,"Disease Analysis Department" ,SchoolStudyType.Zansty,75 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN06", "COL02" , "dept04"), new Department( "dept04" ,"Nursing Department" ,SchoolStudyType.Zansty,76 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN06", "COL03" , "dept01"), new Department( "dept01" ,"DB Technology Department" ,SchoolStudyType.Zansty,67 ));
-        DEPARTMENTSforZansty.put(Arrays.asList("UN06", "COL04" , "dept01"), new Department( "dept01" ,"Social Marketing Department" ,SchoolStudyType.Zansty,74 ));
-    }
+    private static boolean isZanstyChanged = false;
+    private static boolean isWezhaiyChanged = false;
+    private static boolean isAynyChanged = false;
 
-    public static void addDepartment(String universityID,String collegeID, String deptID, String deptName, SchoolStudyType type, int deptCapacity){
-        if (type == SchoolStudyType.Zansty){
-            DEPARTMENTSforZansty.put(Arrays.asList(universityID, collegeID, deptID), new Department(deptID, deptName,type,deptCapacity));
-        }
-        if (type == SchoolStudyType.Wezhaiy){
-            DEPARTMENTSforWezhaiy.put(Arrays.asList(universityID, collegeID, deptID), new Department(deptID, deptName,type,deptCapacity));
-        }
-        if (type == SchoolStudyType.Ayny){
-            DEPARTMENTSforAyny.put(Arrays.asList(universityID, collegeID, deptID), new Department(deptID, deptName,type,deptCapacity));
+    public static void fetchZanstyDepartments() throws IOException, ClassNotFoundException {
+        ObjectInputStream reader = new ObjectInputStream(new FileInputStream("ACP_Project/src/DataFiles/Departments_Zansty.txt"));
+        ZanstyDepartmentHolder = (HashMap<List<String>, Department>) reader.readObject();
+        reader.close();
+        if (isZanstyChanged) {
+            isZanstyChanged = false;
+            System.out.println("Changes canceled for zansty Departments");
         }
     }
 
-    public static void removeDepartment(String universityID,String collegeID, String deptID, SchoolStudyType type){
-                DEPARTMENTSforZansty.remove(Arrays.asList(universityID, collegeID, deptID));
-                DEPARTMENTSforWezhaiy.remove(Arrays.asList(universityID, collegeID, deptID));
-                DEPARTMENTSforAyny.remove(Arrays.asList(universityID, collegeID, deptID));
+    public static void fetchWezhaiyDepartments() throws IOException, ClassNotFoundException {
+        ObjectInputStream reader = new ObjectInputStream(new FileInputStream("ACP_Project/src/DataFiles/Departments_Wezhaiy.txt"));
+        WezhaiyDepartmentHolder = (HashMap<List<String>, Department>) reader.readObject();
+        reader.close();
+        if (isWezhaiyChanged) {
+            isWezhaiyChanged = false;
+            System.out.println("Changes canceled for wezhaiy Departments");
+        }
+    }
+
+    public static void fetchAynyDepartments() throws IOException, ClassNotFoundException {
+        ObjectInputStream reader = new ObjectInputStream(new FileInputStream("ACP_Project/src/DataFiles/Departments_Ayny.txt"));
+        AynyDepartmentHolder = (HashMap<List<String>, Department>) reader.readObject();
+        reader.close();
+        if (isAynyChanged) {
+            isAynyChanged = false;
+            System.out.println("Changes canceled for Ayny Departments");
+        }
+    }
+
+    public static HashMap<List<String>, Department> getZanstyDepartments() {
+        return ZanstyDepartmentHolder;
+    }
+
+    public static HashMap<List<String>, Department> getWezhaiyDepartments() {
+        return WezhaiyDepartmentHolder;
+    }
+
+    public static HashMap<List<String>, Department> getAynyDepartments() {
+        return AynyDepartmentHolder;
+    }
+
+    public static void addDepartment(String universityID, String collegeID, String deptID, String deptName, SchoolStudyType type, int deptCapacity) {
+        if (type == SchoolStudyType.Zansty) {
+            ZanstyDepartmentHolder.put(Arrays.asList(universityID, collegeID, deptID), new Department(deptID, deptName, type, deptCapacity));
+            if (!isZanstyChanged) {
+                isZanstyChanged = true;
+            }
+        } else if (type == SchoolStudyType.Wezhaiy) {
+            WezhaiyDepartmentHolder.put(Arrays.asList(universityID, collegeID, deptID), new Department(deptID, deptName, type, deptCapacity));
+            if (!isWezhaiyChanged) {
+                isWezhaiyChanged = true;
+            }
+        } else if (type == SchoolStudyType.Ayny) {
+            AynyDepartmentHolder.put(Arrays.asList(universityID, collegeID, deptID), new Department(deptID, deptName, type, deptCapacity));
+            if (!isAynyChanged) {
+                isAynyChanged = true;
+            }
+        }
+    }
+
+    public static void removeDepartment(String universityId, String collegeID, String deptID, SchoolStudyType type) {
+        if (type == SchoolStudyType.Zansty) {
+            ZanstyDepartmentHolder.remove(Arrays.asList(universityId, collegeID, deptID));
+            if (!isZanstyChanged) {
+                isZanstyChanged = true;
+            }
+        } else if (type == SchoolStudyType.Wezhaiy) {
+            WezhaiyDepartmentHolder.remove(Arrays.asList(universityId, collegeID, deptID));
+            if (!isWezhaiyChanged) {
+                isWezhaiyChanged = true;
+            }
+        } else if (type == SchoolStudyType.Ayny) {
+            AynyDepartmentHolder.remove(Arrays.asList(universityId, collegeID, deptID));
+            if (!isAynyChanged) {
+                isAynyChanged = true;
+            }
+        }
+    }
+
+    public static void zanstySubmitChanges() throws IOException, ClassNotFoundException {
+        if (isZanstyChanged) {
+            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("ACP_Project/src/DataFiles/Departments_Zansty.txt"));
+            outputStream.writeObject(ZanstyDepartmentHolder);
+            outputStream.close();
+            ZanstyDepartmentHolder.clear();
+            isZanstyChanged = false;
+            fetchZanstyDepartments();
+        } else {
+            System.out.println("Please add or remove at least a zansty Department");
+        }
+    }
+
+    public static void wezhaiySubmitChanges() throws IOException, ClassNotFoundException {
+        if (isWezhaiyChanged) {
+            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("ACP_Project/src/DataFiles/Departments_Wezhaiy.txt"));
+            outputStream.writeObject(WezhaiyDepartmentHolder);
+            outputStream.close();
+            WezhaiyDepartmentHolder.clear();
+            isWezhaiyChanged = false;
+            fetchWezhaiyDepartments();
+        } else {
+            System.out.println("Please add or remove at least a wezhaiy Department");
+        }
+
+    }
+
+    public static void aynySubmitChanges() throws IOException, ClassNotFoundException {
+        if (isAynyChanged) {
+            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("ACP_Project/src/DataFiles/Departments_Ayny.txt"));
+            outputStream.writeObject(AynyDepartmentHolder);
+            outputStream.close();
+            AynyDepartmentHolder.clear();
+            isAynyChanged = false;
+            fetchAynyDepartments();
+        } else {
+            System.out.println("Please add or remove at least an ayny Department");
+        }
+    }
+
+    public static void displayZanstyDepartments(){
+        for (int i = 0; i < getZanstyDepartments().values().size(); i++) {
+            System.out.println(getZanstyDepartments().keySet().stream().toList().get(i));
+            System.out.println(getZanstyDepartments().values().stream().toList().get(i));
+            System.out.println();
+        }
+    }
+    public static void displayWezhaiyDepartments(){
+        for (int i = 0; i < getWezhaiyDepartments().values().size(); i++) {
+            System.out.println(getWezhaiyDepartments().keySet().stream().toList().get(i));
+            System.out.println(getWezhaiyDepartments().values().stream().toList().get(i));
+            System.out.println();
+        }
+    }
+    public static void displayAynyDepartments(){
+        for (int i = 0; i < getAynyDepartments().values().size(); i++) {
+            System.out.println(getAynyDepartments().keySet().stream().toList().get(i));
+            System.out.println(getAynyDepartments().values().stream().toList().get(i));
+            System.out.println();
+        }
     }
     
 }
