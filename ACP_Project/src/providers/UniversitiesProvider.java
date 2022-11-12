@@ -10,7 +10,7 @@ public class UniversitiesProvider {
     private static boolean isChanged = false;
 
     public static void fetchUniversities() throws IOException, ClassNotFoundException {
-        ObjectInputStream reader = new ObjectInputStream(new FileInputStream("src/DataFiles/Universities.txt"));
+        ObjectInputStream reader = new ObjectInputStream(new FileInputStream("ACP_Project/src/DataFiles/Universities.txt"));
         UNIVERSITIES = (HashMap<String, University>) reader.readObject();
         reader.close();
         if (isChanged) {
@@ -35,7 +35,7 @@ public class UniversitiesProvider {
 
     public static void submitChanges() throws IOException, ClassNotFoundException {
         if (isChanged) {
-            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("src/DataFiles/Universities.txt"));
+            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("ACP_Project/src/DataFiles/Universities.txt"));
             outputStream.writeObject(UNIVERSITIES);
             outputStream.close();
             UNIVERSITIES.clear();
