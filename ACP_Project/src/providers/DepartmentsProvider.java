@@ -1,12 +1,15 @@
 package providers;
 
 import Enums.SchoolStudyType;
+import university_information.College;
 import university_information.Department;
+import university_information.University;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class DepartmentsProvider {
     private static HashMap<List<String>, Department> ZanstyDepartmentHolder = new HashMap<>();
@@ -47,16 +50,11 @@ public class DepartmentsProvider {
         }
     }
 
-    public static HashMap<List<String>, Department> getZanstyDepartments() {
-        return ZanstyDepartmentHolder;
-    }
-
-    public static HashMap<List<String>, Department> getWezhaiyDepartments() {
-        return WezhaiyDepartmentHolder;
-    }
-
-    public static HashMap<List<String>, Department> getAynyDepartments() {
-        return AynyDepartmentHolder;
+    public static HashMap<List<String>, Department> getDepartmentsByType(SchoolStudyType type) {
+        if (type == SchoolStudyType.Zansty) return ZanstyDepartmentHolder;
+        else if (type == SchoolStudyType.Wezhaiy) return WezhaiyDepartmentHolder;
+        else if (type == SchoolStudyType.Ayny) return AynyDepartmentHolder;
+        else return null;
     }
 
     public static void addDepartment(String universityID, String collegeID, String deptID, String deptName, SchoolStudyType type, int deptCapacity) {
@@ -137,26 +135,66 @@ public class DepartmentsProvider {
         }
     }
 
-    public static void displayZanstyDepartments(){
-        for (int i = 0; i < getZanstyDepartments().values().size(); i++) {
-            System.out.println(getZanstyDepartments().keySet().stream().toList().get(i));
-            System.out.println(getZanstyDepartments().values().stream().toList().get(i));
-            System.out.println();
+    public static void displayDepartmentsByType(SchoolStudyType type) {
+        String departmentName;
+        String universityId;
+        University university;
+        String collegeId;
+        College college;
+        HashMap<List<String>, Department> departmentsHashMap;
+
+        if (type == SchoolStudyType.Zansty) {
+            departmentsHashMap = Objects.requireNonNull(getDepartmentsByType(SchoolStudyType.Zansty));
+            for (int i = 0; i < departmentsHashMap.size(); i++) {
+                departmentName = departmentsHashMap.values().stream().toList().get(i).getName();
+                universityId = departmentsHashMap.keySet().stream().toList().get(i).get(0);
+                university = UniversitiesProvider.getUNIVERSITIES().get(universityId);
+                collegeId = departmentsHashMap.keySet().stream().toList().get(i).get(1);
+                college = CollegesProvider.getCOLLEGES().get(Arrays.asList(universityId, collegeId));
+                if (college == null) {
+                    System.out.println((i + 1) + ". " + university.location() + university.name() + "/" + departmentName);
+                    System.out.println();
+                } else {
+                    System.out.println((i + 1) + ". " + university.location() + "/" + university.name() + "/" + college.name() + "/" + departmentName);
+                    System.out.println();
+                }
+            }
+        } else if (type == SchoolStudyType.Wezhaiy) {
+            departmentsHashMap = Objects.requireNonNull(getDepartmentsByType(SchoolStudyType.Wezhaiy));
+            for (int i = 0; i < departmentsHashMap.size(); i++) {
+                departmentName = departmentsHashMap.values().stream().toList().get(i).getName();
+
+                universityId = departmentsHashMap.keySet().stream().toList().get(i).get(0);
+                university = UniversitiesProvider.getUNIVERSITIES().get(universityId);
+                collegeId = departmentsHashMap.keySet().stream().toList().get(i).get(1);
+                college = CollegesProvider.getCOLLEGES().get(Arrays.asList(universityId, collegeId));
+                if (college == null) {
+                    System.out.println((i + 1) + ". " + university.location() + university.name() + "/" + departmentName);
+                    System.out.println();
+                } else {
+                    System.out.println((i + 1) + ". " + university.location() + "/" + university.name() + "/" + college.name() + "/" + departmentName);
+                    System.out.println();
+                }
+            }
+        } else if (type == SchoolStudyType.Ayny) {
+            departmentsHashMap = Objects.requireNonNull(getDepartmentsByType(SchoolStudyType.Ayny));
+            for (int i = 0; i < departmentsHashMap.size(); i++) {
+                departmentName = departmentsHashMap.values().stream().toList().get(i).getName();
+
+                universityId = departmentsHashMap.keySet().stream().toList().get(i).get(0);
+                university = UniversitiesProvider.getUNIVERSITIES().get(universityId);
+                collegeId = departmentsHashMap.keySet().stream().toList().get(i).get(1);
+                college = CollegesProvider.getCOLLEGES().get(Arrays.asList(universityId, collegeId));
+                if (college == null) {
+                    System.out.println((i + 1) + ". " + university.location() + university.name() + "/" + departmentName);
+                    System.out.println();
+                } else {
+                    System.out.println((i + 1) + ". " + university.location() + "/" + university.name() + "/" + college.name() + "/" + departmentName);
+                    System.out.println();
+                }
+            }
         }
+
     }
-    public static void displayWezhaiyDepartments(){
-        for (int i = 0; i < getWezhaiyDepartments().values().size(); i++) {
-            System.out.println(getWezhaiyDepartments().keySet().stream().toList().get(i));
-            System.out.println(getWezhaiyDepartments().values().stream().toList().get(i));
-            System.out.println();
-        }
-    }
-    public static void displayAynyDepartments(){
-        for (int i = 0; i < getAynyDepartments().values().size(); i++) {
-            System.out.println(getAynyDepartments().keySet().stream().toList().get(i));
-            System.out.println(getAynyDepartments().values().stream().toList().get(i));
-            System.out.println();
-        }
-    }
-    
+
 }
