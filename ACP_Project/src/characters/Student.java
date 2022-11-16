@@ -1,6 +1,7 @@
 package characters;
 
 import Enums.SchoolStudyType;
+import university_information.Department;
 
 import java.io.Serializable;
 import java.util.*;
@@ -14,7 +15,8 @@ public class Student implements Serializable {
     private final String dateOfBirth;
     private final SchoolStudyType type;
     private HashMap<String, Double> subjectsAndGrades = new HashMap<String, Double>();
-    public LinkedList<String> filledDepartments;
+    public LinkedList<List<String>> filledDepartments = new LinkedList<>();
+    private Department receivedDepartment;
 
 
     public Student(String studentId, String studentName, String studentPassword, String studentGender,
