@@ -26,7 +26,7 @@ public class LoginScreen {
 	           
 	            if( Sd!=null&&Sd.getId().equals(Userid)&&Sd.getPassword().equals(password)) 
 	            {
-	            	new StudentScreen();
+	            	Screen.StudentScreen.showStudentInformation(Sd);
 	            }
 	            else if(Ad!=null&&Ad.id().equals(Userid) &&Ad.password().equals(password)) {
 	            	Screen.AdminstratorScreen.ShowAdminstrator(Ad);
