@@ -1,18 +1,26 @@
-import characters.Adminstrator;
+package providers;
+
+import Models.Adminstrator;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class AdminstratorsProvider {
     public static ArrayList<Adminstrator> adminstrators = new ArrayList<>();
     private static boolean isChanged = false;
-    public static void fetchAdminstrators() throws IOException, ClassNotFoundException {
-        ObjectInputStream reader = new ObjectInputStream(new FileInputStream("ACP_Project/src/DataFiles/Adminstrators.txt"));
-        adminstrators = (ArrayList<Adminstrator>) reader.readObject();
-        reader.close();
-        if (isChanged) {
-            isChanged = false;
-            System.out.println("Changes canceled");
+
+    public static void fetchAdminstrators() {
+        try {
+            ObjectInputStream reader = new ObjectInputStream(new FileInputStream("ACP_Project/src/DataFiles/Adminstrators.txt"));
+            adminstrators = (ArrayList<Adminstrator>) reader.readObject();
+            reader.close();
+            if (isChanged) {
+                isChanged = false;
+                System.out.println("Changes canceled");
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Cannot fetch Adminstrators" + e.getMessage() + "  " + Arrays.toString(e.getStackTrace()));
         }
     }
 
@@ -30,20 +38,38 @@ public class AdminstratorsProvider {
         }
     }
 
-    public static void submitChanges() throws IOException, ClassNotFoundException {
-        if (isChanged) {
-            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("ACP_Project/src/DataFiles/Adminstrators.txt"));
-            outputStream.writeObject(adminstrators);
-            outputStream.close();
-            adminstrators.clear();
-            isChanged = false;
-            fetchAdminstrators();
-        } else {
-            System.out.println("Please add or remove at least an Adminstrator");
+    public static void submitChanges() {
+        try {
+            if (isChanged) {
+                ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("ACP_Project/src/DataFiles/Adminstrators.txt"));
+                outputStream.writeObject(adminstrators);
+                outputStream.close();
+                adminstrators.clear();
+                isChanged = false;
+                fetchAdminstrators();
+            } else {
+                System.out.println("Please add or remove at least an Adminstrator");
+            }
+        } catch (IOException e) {
+            System.out.println("Cannot submit changes in adminstrators");
         }
+
     }
 
     public static ArrayList<Adminstrator> getAdminstrators() {
         return adminstrators;
     }
+
+    public static Adminstrator findAdminstrator(String id, String password) {
+        fetchAdminstrators();
+        Adminstrator found = null;
+        for (Adminstrator adminstrator : getAdminstrators()) {
+            if (adminstrator.id().equals(id) && adminstrator.password().equals(password)) {
+                found = adminstrator;
+                break;
+            }
+        }
+        return found;
+    }
+
 }
