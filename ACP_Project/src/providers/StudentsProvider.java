@@ -1,65 +1,76 @@
 package providers;
 
-import characters.Student;
+import Models.SchoolStudyType;
+import Models.Student;
 
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.Vector;
 
 public class StudentsProvider {
-    private static ArrayList<Student> zanstyStudentsHolder = new ArrayList<>();
-    private static ArrayList<Student> wezhaiyStudentsHolder = new ArrayList<>();
-    private static ArrayList<Student> aynyStudentsHolder = new ArrayList<>();
+    final static String[] zanstySubjects = {"Math", "Science", "Chemistry", "Physic", "Arabic", "English", "Kurdish"};
+    final static   String[] WezhaiySubjects = {"Math", "Mezhu", "Abury", "Jugraphia", "Arabic", "English", "Kurdish"};
+    final static String[] aynySubjects = {"Math", "FiqeIslami", "FaraizQuraan", "UsulFiqe", "Arabic", "English", "Kurdish"};
+    private Vector<Student> zanstyStudentsHolder = new Vector<>();
+    private  Vector<Student> wezhaiyStudentsHolder = new Vector<>();
+    private Vector<Student> aynyStudentsHolder = new Vector<>();
 
-//    final static String[] zanstySubjects = {"Math", "Science", "Chemistry", "Physic", "Arabic", "English", "Kurdish"};
-//    final static String[] WezhaiySubjects = {"Math", "Mezhu", "Abury", "Jugraphia", "Arabic", "English", "Kurdish"};
-//    final static String[] aynySubjects = {"Math", "FiqeIslami", "FaraizQuraan", "UsulFiqe", "Arabic", "English", "Kurdish"};
+    public void fetchStudentsByType(SchoolStudyType type) {
+        if (type == SchoolStudyType.Zansty) {
+            try {
+                ObjectInputStream reader = new ObjectInputStream(new FileInputStream("ACP_Project/src/DataFiles/Students_Zansty.txt"));
+                zanstyStudentsHolder = (Vector<Student>) reader.readObject();
+                reader.close();
+            } catch (ClassNotFoundException | IOException e) {
+                System.out.println("Cannot fetch zansty Students: " + e.getMessage());
+            }
+        } else if (type == SchoolStudyType.Wezhaiy) {
+            try {
+                ObjectInputStream reader = new ObjectInputStream(new FileInputStream("ACP_Project/src/DataFiles/Students_Wezhaiy.txt"));
+                wezhaiyStudentsHolder = (Vector<Student>) reader.readObject();
+                reader.close();
+            } catch (ClassNotFoundException | IOException e) {
+                System.out.println("Cannot fetch wezhaiy Students: " + e.getMessage());
+            }
+        } else if (type == SchoolStudyType.Ayny) {
+            try {
+                ObjectInputStream reader = new ObjectInputStream(new FileInputStream("ACP_Project/src/DataFiles/Students_Ayny.txt"));
+                aynyStudentsHolder = (Vector<Student>) reader.readObject();
+                reader.close();
+            } catch (ClassNotFoundException | IOException e) {
+                System.out.println("Cannot fetch ayny Students: " + e.getMessage());
+            }
+        }
+    }
 
-    public static void fetchZanstyStudents() throws IOException, ClassNotFoundException {
-        ObjectInputStream reader = new ObjectInputStream(new FileInputStream("ACP_Project/src/DataFiles/Students_Zansty.txt"));
-        zanstyStudentsHolder = (ArrayList<Student>) reader.readObject();
-        reader.close();
-    }
-    public static void fetchWezhaiyStudents() throws IOException, ClassNotFoundException {
-        ObjectInputStream reader = new ObjectInputStream(new FileInputStream("ACP_Project/src/DataFiles/Students_Wezhaiy.txt"));
-        wezhaiyStudentsHolder = (ArrayList<Student>) reader.readObject();
-        reader.close();
-    }
-    public static void fetchAynyStudents() throws IOException, ClassNotFoundException {
-        ObjectInputStream reader = new ObjectInputStream(new FileInputStream("ACP_Project/src/DataFiles/Students_Ayny.txt"));
-        aynyStudentsHolder = (ArrayList<Student>) reader.readObject();
-        reader.close();
+    public Vector<Student> getStudentsByType(SchoolStudyType type) {
+        if (type == SchoolStudyType.Zansty) {
+            return zanstyStudentsHolder;
+        } else if (type == SchoolStudyType.Wezhaiy) {
+            return wezhaiyStudentsHolder;
+        } else {
+            return aynyStudentsHolder;
+        }
+
     }
 
-    public static ArrayList<Student> getZanstyStudentsHolder() {
-        return zanstyStudentsHolder;
-    }
-    public static ArrayList<Student> getWezhaiyStudentsHolder() {
-        return wezhaiyStudentsHolder;
-    }
-    public static ArrayList<Student> getAynyStudentsHolder() {
-        return aynyStudentsHolder;
-    }
-    
-    public static Student findStudent(String id, String password) throws IOException, ClassNotFoundException {
-        fetchZanstyStudents();
-        fetchWezhaiyStudents();
-        fetchAynyStudents();
+    public Student findStudent(String id, String password) {
+        fetchStudentsByType(SchoolStudyType.Zansty);
+        fetchStudentsByType(SchoolStudyType.Wezhaiy);
+        fetchStudentsByType(SchoolStudyType.Ayny);
         Student found = null;
-        for (Student student : getZanstyStudentsHolder()) {
+        for (Student student : getStudentsByType(SchoolStudyType.Zansty)) {
             if (student.getId().equals(id) && student.getPassword().equals(password)) {
                 found = student;
                 break;
             }
         }
-        for (Student student : getWezhaiyStudentsHolder()) {
+        for (Student student : getStudentsByType(SchoolStudyType.Wezhaiy)) {
             if (student.getId().equals(id) && student.getPassword().equals(password)) {
                 found = student;
                 break;
             }
         }
-        for (Student student : getAynyStudentsHolder()) {
+        for (Student student : getStudentsByType(SchoolStudyType.Ayny)) {
             if (student.getId().equals(id) && student.getPassword().equals(password)) {
                 found = student;
                 break;
@@ -67,4 +78,5 @@ public class StudentsProvider {
         }
         return found;
     }
+
 }
