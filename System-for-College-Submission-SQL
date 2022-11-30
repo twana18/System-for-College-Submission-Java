@@ -264,3 +264,236 @@ INSERT INTO `student` (`id`, `name`, `password`, `gender`, `dateOfBirth`, `Schoo
 ('S00074', 'FatimaMustafaNuraddin', '12345678', 'FeMale', '2002-02-02', 'Ayny'),
 ('S00075', 'SinamAzizMuhammad', '12345678', 'FeMale', '2002-02-09', 'Ayny');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `university`
+--
+
+CREATE TABLE `university` (
+  `id` varchar(10) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `location` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `university`
+--
+
+INSERT INTO `university` (`id`, `name`, `location`) VALUES
+('UN01 ', 'Salahaddin ', 'Hawler '),
+('UN02 ', 'Hawler Medicine ', 'Hawler '),
+('UN03 ', 'Slemani ', 'Slemani '),
+('UN04 ', 'Duhok ', 'Duhok '),
+('UN05 ', 'PolyTechnique ', 'Hawler ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wezhaiy_subjects_and_grades`
+--
+
+CREATE TABLE `wezhaiy_subjects_and_grades` (
+  `Sid` varchar(10) NOT NULL,
+  `Math` double NOT NULL,
+  `Mezhu` double NOT NULL,
+  `Abury` double NOT NULL,
+  `Jugraphia` double NOT NULL,
+  `Arabic` double NOT NULL,
+  `English` double NOT NULL,
+  `Kurdish` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `wezhaiy_subjects_and_grades`
+--
+
+INSERT INTO `wezhaiy_subjects_and_grades` (`Sid`, `Math`, `Mezhu`, `Abury`, `Jugraphia`, `Arabic`, `English`, `Kurdish`) VALUES
+('S00026 ', 96, 90, 88, 80, 88, 88, 80),
+('S00027 ', 88, 80, 84, 86, 82, 88, 80),
+('S00028 ', 78, 70, 74, 76, 82, 78, 70),
+('S00029 ', 68, 60, 64, 56, 62, 68, 60),
+('S00030 ', 88, 80, 88, 86, 72, 88, 80),
+('S00031 ', 88, 80, 84, 86, 72, 78, 80),
+('S00032 ', 58, 60, 64, 66, 62, 78, 60),
+('S00033 ', 88, 80, 84, 96, 92, 88, 80),
+('S00034 ', 88, 80, 84, 86, 82, 98, 80),
+('S00035 ', 78, 80, 84, 96, 82, 98, 80),
+('S00036 ', 88, 80, 84, 66, 82, 70, 80),
+('S00037 ', 88, 80, 84, 86, 82, 98, 90),
+('S00038 ', 68, 70, 64, 66, 82, 68, 70),
+('S00039 ', 88, 80, 84, 86, 72, 78, 80),
+('S00040 ', 58, 80, 84, 56, 82, 58, 80),
+('S00041 ', 88, 80, 84, 86, 82, 78, 80),
+('S00042 ', 68, 80, 64, 66, 82, 58, 70),
+('S00043 ', 88, 80, 84, 86, 82, 68, 50),
+('S00044 ', 88, 70, 84, 86, 82, 58, 80),
+('S00045 ', 88, 70, 84, 86, 92, 58, 80),
+('S00046 ', 88, 80, 84, 86, 82, 88, 80),
+('S00047 ', 88, 70, 84, 76, 82, 88, 80),
+('S00048 ', 88, 80, 84, 86, 82, 58, 80),
+('S00049 ', 88, 90, 94, 96, 92, 98, 80),
+('S00050 ', 88, 90, 94, 96, 92, 98, 80);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zansty_subjects_and_grades`
+--
+
+CREATE TABLE `zansty_subjects_and_grades` (
+  `sid` varchar(10) NOT NULL,
+  `Math` double NOT NULL,
+  `Science` double NOT NULL,
+  `Chemistry` double NOT NULL,
+  `Physic` double NOT NULL,
+  `Arabic` double NOT NULL,
+  `English` double NOT NULL,
+  `Kurdish` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `zansty_subjects_and_grades`
+--
+
+INSERT INTO `zansty_subjects_and_grades` (`sid`, `Math`, `Science`, `Chemistry`, `Physic`, `Arabic`, `English`, `Kurdish`) VALUES
+('S00001 ', 96, 90, 88, 80, 88, 88, 80),
+('S00002 ', 88, 80, 84, 86, 82, 88, 80),
+('S00003 ', 78, 70, 74, 76, 82, 78, 70),
+('S00004 ', 68, 60, 64, 56, 62, 68, 60),
+('S00005 ', 88, 80, 88, 86, 72, 88, 80),
+('S00006 ', 88, 80, 84, 86, 72, 78, 80),
+('S00007 ', 58, 60, 64, 66, 62, 78, 60),
+('S00008 ', 88, 80, 84, 96, 92, 88, 80),
+('S00009 ', 88, 80, 84, 86, 82, 98, 80),
+('S00011 ', 78, 80, 84, 96, 82, 98, 80),
+('S00012 ', 88, 80, 84, 66, 82, 70, 80),
+('S00013 ', 88, 80, 84, 86, 82, 98, 90),
+('S00014 ', 68, 70, 64, 66, 82, 68, 70),
+('S00015 ', 88, 80, 84, 86, 72, 78, 80),
+('S00016 ', 58, 80, 84, 56, 82, 58, 80),
+('S00017 ', 88, 80, 84, 86, 82, 78, 80),
+('S00018 ', 68, 80, 64, 66, 82, 58, 70),
+('S00019 ', 88, 80, 84, 86, 82, 68, 50),
+('S00020 ', 88, 70, 84, 86, 82, 58, 80),
+('S00021 ', 88, 70, 84, 86, 92, 58, 80),
+('S00022 ', 88, 80, 84, 86, 82, 88, 80),
+('S00023 ', 88, 70, 84, 76, 82, 88, 80),
+('S00024 ', 88, 80, 84, 86, 82, 58, 80),
+('S00025 ', 88, 90, 94, 96, 92, 98, 80);
+
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `adminstrator`
+--
+ALTER TABLE `adminstrator`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ayny_subjects_and_grades`
+--
+ALTER TABLE `ayny_subjects_and_grades`
+  ADD KEY `Sid` (`Sid`);
+
+--
+-- Indexes for table `college`
+--
+ALTER TABLE `college`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `University id` (`University id`);
+
+--
+-- Indexes for table `department`
+--
+ALTER TABLE `department`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `SchoolStudyType` (`SchoolStudyType`),
+  ADD KEY `University id` (`University id`),
+  ADD KEY `College id` (`College id`);
+
+--
+-- Indexes for table `filled_departments`
+--
+ALTER TABLE `filled_departments`
+  ADD KEY `Sid` (`Sid`),
+  ADD KEY `University id` (`University id`),
+  ADD KEY `College id` (`College id`),
+  ADD KEY `Department id` (`Department id`);
+
+--
+-- Indexes for table `received_department`
+--
+ALTER TABLE `received_department`
+  ADD KEY `Sid` (`Sid`),
+  ADD KEY `University id` (`University id`),
+  ADD KEY `College id` (`College id`),
+  ADD KEY `Department id` (`Department id`);
+
+--
+-- Indexes for table `student`
+--
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `university`
+--
+ALTER TABLE `university`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `wezhaiy_subjects_and_grades`
+--
+ALTER TABLE `wezhaiy_subjects_and_grades`
+  ADD KEY `Sid` (`Sid`);
+
+--
+-- Indexes for table `zansty_subjects_and_grades`
+--
+ALTER TABLE `zansty_subjects_and_grades`
+  ADD KEY `sid` (`sid`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `ayny_subjects_and_grades`
+--
+ALTER TABLE `ayny_subjects_and_grades`
+  ADD CONSTRAINT `ayny_subjects_and_grades_ibfk_1` FOREIGN KEY (`Sid`) REFERENCES `student` (`id`);
+
+--
+-- Constraints for table `filled_departments`
+--
+ALTER TABLE `filled_departments`
+  ADD CONSTRAINT `filled_departments_ibfk_1` FOREIGN KEY (`Sid`) REFERENCES `student` (`id`),
+  ADD CONSTRAINT `filled_departments_ibfk_2` FOREIGN KEY (`University id`) REFERENCES `university` (`id`),
+  ADD CONSTRAINT `filled_departments_ibfk_3` FOREIGN KEY (`College id`) REFERENCES `college` (`id`),
+  ADD CONSTRAINT `filled_departments_ibfk_4` FOREIGN KEY (`Department id`) REFERENCES `department` (`id`);
+
+--
+-- Constraints for table `received_department`
+--
+ALTER TABLE `received_department`
+  ADD CONSTRAINT `received_department_ibfk_1` FOREIGN KEY (`Sid`) REFERENCES `student` (`id`),
+  ADD CONSTRAINT `received_department_ibfk_2` FOREIGN KEY (`University id`) REFERENCES `university` (`id`),
+  ADD CONSTRAINT `received_department_ibfk_3` FOREIGN KEY (`College id`) REFERENCES `college` (`id`),
+  ADD CONSTRAINT `received_department_ibfk_4` FOREIGN KEY (`Department id`) REFERENCES `department` (`id`);
+
+--
+-- Constraints for table `wezhaiy_subjects_and_grades`
+--
+ALTER TABLE `wezhaiy_subjects_and_grades`
+  ADD CONSTRAINT `wezhaiy_subjects_and_grades_ibfk_1` FOREIGN KEY (`Sid`) REFERENCES `student` (`id`);
+
+--
+-- Constraints for table `zansty_subjects_and_grades`
+--
+ALTER TABLE `zansty_subjects_and_grades`
+  ADD CONSTRAINT `zansty_subjects_and_grades_ibfk_1` FOREIGN KEY (`sid`) REFERENCES `student` (`id`);
+COMMIT;
