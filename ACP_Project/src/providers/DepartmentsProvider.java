@@ -1,56 +1,67 @@
 package providers;
 
-import Enums.SchoolStudyType;
-import university_information.College;
-import university_information.Department;
-import university_information.University;
+import Models.College;
+import Models.Department;
+import Models.SchoolStudyType;
+import Models.University;
 
 import java.io.*;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class DepartmentsProvider {
-    private static HashMap<List<String>, Department> ZanstyDepartmentHolder = new HashMap<>();
-    private static HashMap<List<String>, Department> WezhaiyDepartmentHolder = new HashMap<>();
-    private static HashMap<List<String>, Department> AynyDepartmentHolder = new HashMap<>();
+    private static ConcurrentHashMap<List<String>, Department> ZanstyDepartmentHolder = new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<List<String>, Department> WezhaiyDepartmentHolder = new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<List<String>, Department> AynyDepartmentHolder = new ConcurrentHashMap<>();
 
     private static boolean isZanstyChanged = false;
     private static boolean isWezhaiyChanged = false;
     private static boolean isAynyChanged = false;
 
-    public static void fetchZanstyDepartments() throws IOException, ClassNotFoundException {
-        ObjectInputStream reader = new ObjectInputStream(new FileInputStream("ACP_Project/src/DataFiles/Departments_Zansty.txt"));
-        ZanstyDepartmentHolder = (HashMap<List<String>, Department>) reader.readObject();
-        reader.close();
-        if (isZanstyChanged) {
-            isZanstyChanged = false;
-            System.out.println("Changes canceled for zansty Departments");
+    public static void fetchDepartmentsByType(SchoolStudyType type) {
+        if (type == SchoolStudyType.Zansty) {
+            try {
+                ObjectInputStream reader = new ObjectInputStream(new FileInputStream("ACP_Project/src/DataFiles/Departments_Zansty.txt"));
+                ZanstyDepartmentHolder = (ConcurrentHashMap<List<String>, Department>) reader.readObject();
+                reader.close();
+                if (isZanstyChanged) {
+                    isZanstyChanged = false;
+                    System.out.println("Changes canceled for zansty Departments");
+                }
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println("Cannot fetch zansty departments: " + e.getMessage());
+            }
+        } else if (type == SchoolStudyType.Wezhaiy) {
+            try {
+                ObjectInputStream reader = new ObjectInputStream(new FileInputStream("ACP_Project/src/DataFiles/Departments_Wezhaiy.txt"));
+                WezhaiyDepartmentHolder = (ConcurrentHashMap<List<String>, Department>) reader.readObject();
+                reader.close();
+                if (isWezhaiyChanged) {
+                    isWezhaiyChanged = false;
+                    System.out.println("Changes canceled for wezhaiy Departments");
+                }
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println("Cannot fetch wezhaiy departments: " + e.getMessage());
+            }
+        } else if (type == SchoolStudyType.Ayny) {
+            try {
+                ObjectInputStream reader = new ObjectInputStream(new FileInputStream("ACP_Project/src/DataFiles/Departments_Ayny.txt"));
+                AynyDepartmentHolder = (ConcurrentHashMap<List<String>, Department>) reader.readObject();
+                reader.close();
+                if (isAynyChanged) {
+                    isAynyChanged = false;
+                    System.out.println("Changes canceled for Ayny Departments");
+                }
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println("Cannot fetch ayny departments: " + e.getMessage());
+            }
         }
+
     }
 
-    public static void fetchWezhaiyDepartments() throws IOException, ClassNotFoundException {
-        ObjectInputStream reader = new ObjectInputStream(new FileInputStream("ACP_Project/src/DataFiles/Departments_Wezhaiy.txt"));
-        WezhaiyDepartmentHolder = (HashMap<List<String>, Department>) reader.readObject();
-        reader.close();
-        if (isWezhaiyChanged) {
-            isWezhaiyChanged = false;
-            System.out.println("Changes canceled for wezhaiy Departments");
-        }
-    }
-
-    public static void fetchAynyDepartments() throws IOException, ClassNotFoundException {
-        ObjectInputStream reader = new ObjectInputStream(new FileInputStream("ACP_Project/src/DataFiles/Departments_Ayny.txt"));
-        AynyDepartmentHolder = (HashMap<List<String>, Department>) reader.readObject();
-        reader.close();
-        if (isAynyChanged) {
-            isAynyChanged = false;
-            System.out.println("Changes canceled for Ayny Departments");
-        }
-    }
-
-    public static HashMap<List<String>, Department> getDepartmentsByType(SchoolStudyType type) {
+    public static ConcurrentHashMap<List<String>, Department> getDepartmentsByType(SchoolStudyType type) {
         if (type == SchoolStudyType.Zansty) return ZanstyDepartmentHolder;
         else if (type == SchoolStudyType.Wezhaiy) return WezhaiyDepartmentHolder;
         else if (type == SchoolStudyType.Ayny) return AynyDepartmentHolder;
@@ -95,104 +106,56 @@ public class DepartmentsProvider {
         }
     }
 
-    public static void zanstySubmitChanges() throws IOException, ClassNotFoundException {
-        if (isZanstyChanged) {
-            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("ACP_Project/src/DataFiles/Departments_Zansty.txt"));
-            outputStream.writeObject(ZanstyDepartmentHolder);
-            outputStream.close();
-            ZanstyDepartmentHolder.clear();
-            isZanstyChanged = false;
-            fetchZanstyDepartments();
-        } else {
-            System.out.println("Please add or remove at least a zansty Department");
+    public static void zanstySubmitChanges() {
+        try {
+            if (isZanstyChanged) {
+                ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("ACP_Project/src/DataFiles/Departments_Zansty.txt"));
+                outputStream.writeObject(ZanstyDepartmentHolder);
+                outputStream.close();
+                ZanstyDepartmentHolder.clear();
+                isZanstyChanged = false;
+                fetchDepartmentsByType(SchoolStudyType.Zansty);
+            } else {
+                System.out.println("Please add or remove at least a zansty Department");
+            }
+        } catch (IOException e) {
+            System.out.println("Cannot submit changes in zansty departments: " + e.getMessage());
         }
     }
 
-    public static void wezhaiySubmitChanges() throws IOException, ClassNotFoundException {
-        if (isWezhaiyChanged) {
-            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("ACP_Project/src/DataFiles/Departments_Wezhaiy.txt"));
-            outputStream.writeObject(WezhaiyDepartmentHolder);
-            outputStream.close();
-            WezhaiyDepartmentHolder.clear();
-            isWezhaiyChanged = false;
-            fetchWezhaiyDepartments();
-        } else {
-            System.out.println("Please add or remove at least a wezhaiy Department");
+    public static void wezhaiySubmitChanges() {
+        try {
+            if (isWezhaiyChanged) {
+                ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("ACP_Project/src/DataFiles/Departments_Wezhaiy.txt"));
+                outputStream.writeObject(WezhaiyDepartmentHolder);
+                outputStream.close();
+                WezhaiyDepartmentHolder.clear();
+                isWezhaiyChanged = false;
+                fetchDepartmentsByType(SchoolStudyType.Wezhaiy);
+            } else {
+                System.out.println("Please add or remove at least a wezhaiy Department");
+            }
+        } catch (IOException e) {
+            System.out.println("Cannot submit changes in wezhaiy departments: " + e.getMessage());
         }
+
 
     }
 
-    public static void aynySubmitChanges() throws IOException, ClassNotFoundException {
-        if (isAynyChanged) {
-            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("ACP_Project/src/DataFiles/Departments_Ayny.txt"));
-            outputStream.writeObject(AynyDepartmentHolder);
-            outputStream.close();
-            AynyDepartmentHolder.clear();
-            isAynyChanged = false;
-            fetchAynyDepartments();
-        } else {
-            System.out.println("Please add or remove at least an ayny Department");
-        }
-    }
-
-    public static void displayDepartmentsByType(SchoolStudyType type) {
-        String departmentName;
-        String universityId;
-        University university;
-        String collegeId;
-        College college;
-        HashMap<List<String>, Department> departmentsHashMap;
-
-        if (type == SchoolStudyType.Zansty) {
-            departmentsHashMap = Objects.requireNonNull(getDepartmentsByType(SchoolStudyType.Zansty));
-            for (int i = 0; i < departmentsHashMap.size(); i++) {
-                departmentName = departmentsHashMap.values().stream().toList().get(i).getName();
-                universityId = departmentsHashMap.keySet().stream().toList().get(i).get(0);
-                university = UniversitiesProvider.getUNIVERSITIES().get(universityId);
-                collegeId = departmentsHashMap.keySet().stream().toList().get(i).get(1);
-                college = CollegesProvider.getCOLLEGES().get(Arrays.asList(universityId, collegeId));
-                if (college == null) {
-                    System.out.println((i + 1) + ". " + university.location() + university.name() + "/" + departmentName);
-                    System.out.println();
-                } else {
-                    System.out.println((i + 1) + ". " + university.location() + "/" + university.name() + "/" + college.name() + "/" + departmentName);
-                    System.out.println();
-                }
+    public static void aynySubmitChanges() {
+        try {
+            if (isAynyChanged) {
+                ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("ACP_Project/src/DataFiles/Departments_Ayny.txt"));
+                outputStream.writeObject(AynyDepartmentHolder);
+                outputStream.close();
+                AynyDepartmentHolder.clear();
+                isAynyChanged = false;
+                fetchDepartmentsByType(SchoolStudyType.Ayny);
+            } else {
+                System.out.println("Please add or remove at least an ayny Department");
             }
-        } else if (type == SchoolStudyType.Wezhaiy) {
-            departmentsHashMap = Objects.requireNonNull(getDepartmentsByType(SchoolStudyType.Wezhaiy));
-            for (int i = 0; i < departmentsHashMap.size(); i++) {
-                departmentName = departmentsHashMap.values().stream().toList().get(i).getName();
-
-                universityId = departmentsHashMap.keySet().stream().toList().get(i).get(0);
-                university = UniversitiesProvider.getUNIVERSITIES().get(universityId);
-                collegeId = departmentsHashMap.keySet().stream().toList().get(i).get(1);
-                college = CollegesProvider.getCOLLEGES().get(Arrays.asList(universityId, collegeId));
-                if (college == null) {
-                    System.out.println((i + 1) + ". " + university.location() + university.name() + "/" + departmentName);
-                    System.out.println();
-                } else {
-                    System.out.println((i + 1) + ". " + university.location() + "/" + university.name() + "/" + college.name() + "/" + departmentName);
-                    System.out.println();
-                }
-            }
-        } else if (type == SchoolStudyType.Ayny) {
-            departmentsHashMap = Objects.requireNonNull(getDepartmentsByType(SchoolStudyType.Ayny));
-            for (int i = 0; i < departmentsHashMap.size(); i++) {
-                departmentName = departmentsHashMap.values().stream().toList().get(i).getName();
-
-                universityId = departmentsHashMap.keySet().stream().toList().get(i).get(0);
-                university = UniversitiesProvider.getUNIVERSITIES().get(universityId);
-                collegeId = departmentsHashMap.keySet().stream().toList().get(i).get(1);
-                college = CollegesProvider.getCOLLEGES().get(Arrays.asList(universityId, collegeId));
-                if (college == null) {
-                    System.out.println((i + 1) + ". " + university.location() + university.name() + "/" + departmentName);
-                    System.out.println();
-                } else {
-                    System.out.println((i + 1) + ". " + university.location() + "/" + university.name() + "/" + college.name() + "/" + departmentName);
-                    System.out.println();
-                }
-            }
+        } catch (IOException e) {
+            System.out.println("Cannot submit changes in ayny departments: " + e.getMessage());
         }
 
     }
