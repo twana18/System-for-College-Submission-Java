@@ -1,0 +1,266 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+
+CREATE TABLE `adminstrator` (
+  `id` varchar(10) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `password` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `adminstrator`
+--
+
+INSERT INTO `adminstrator` (`id`, `name`, `password`) VALUES
+('A01', 'Zhanyar Fatah Razaq', '12345678'),
+('A02', 'Raz Ahmed Shwan', '12345678'),
+('A03', 'Ahmed Ali Hama', '12345678'),
+('A04', 'Rozhgar Namiq Rasull', '12345678'),
+('A05', 'Siako Nadr Jalal', '12345678'),
+('A06', 'Aso Shema Ali', '12345678'),
+('A07', 'Rezhwan Nury Kawa', '12345678'),
+('A08', 'Zana Aziz Khidir', '12345678'),
+('A09', 'Mustafa Ako Nuri', '12345678'),
+('A10', 'Salam Zyad Hawta', '12345678'),
+('A11', 'Bawar Bayiz Muhammed', '12345678'),
+('A12', 'Dara Aso Dara', '12345678'),
+('A13', 'Dlzar Awlla Hamad', '12345678'),
+('A14', 'Shno Aziz Mirza', '12345678'),
+('A15', 'Shaho Fars Ali', '12345678'),
+('A16', 'Ali Hamad Husen', '12345678'),
+('A17', 'Ania Ari Ali', '12345678'),
+('A18', 'Rahand Jalal Hamid', '12345678'),
+('A19', 'Dlyar Zhewar Hawez', '12345678'),
+('A20', 'Shallaw Ahmad Muhamad', '12345678');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ayny_subjects_and_grades`
+--
+
+CREATE TABLE `ayny_subjects_and_grades` (
+  `Sid` varchar(10) NOT NULL,
+  `Math` double NOT NULL,
+  `FiqeIslami` double NOT NULL,
+  `FaraizQuraan` double NOT NULL,
+  `UsulFiqe` double NOT NULL,
+  `Arabic` double NOT NULL,
+  `English` double NOT NULL,
+  `Kurdish` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `ayny_subjects_and_grades`
+--
+
+INSERT INTO `ayny_subjects_and_grades` (`Sid`, `Math`, `FiqeIslami`, `FaraizQuraan`, `UsulFiqe`, `Arabic`, `English`, `Kurdish`) VALUES
+('S00051 ', 96, 90, 88, 80, 88, 88, 80),
+('S00052 ', 88, 80, 84, 86, 82, 88, 80),
+('S00053 ', 78, 70, 74, 76, 82, 78, 70),
+('S00054 ', 68, 60, 64, 56, 62, 68, 60),
+('S00055 ', 88, 80, 88, 86, 72, 88, 80),
+('S00056 ', 88, 80, 84, 86, 72, 78, 80),
+('S00057 ', 58, 60, 64, 66, 62, 78, 60),
+('S00058 ', 88, 80, 84, 96, 92, 88, 80),
+('S00060 ', 88, 80, 84, 86, 82, 98, 80),
+('S00061 ', 78, 80, 84, 96, 82, 98, 80),
+('S00062 ', 88, 80, 84, 66, 82, 70, 80),
+('S00063 ', 88, 80, 84, 86, 82, 98, 90),
+('S00064 ', 68, 70, 64, 66, 82, 68, 70),
+('S00065 ', 88, 80, 84, 86, 72, 78, 80),
+('S00066 ', 58, 80, 84, 56, 82, 58, 80),
+('S00067 ', 88, 80, 84, 86, 82, 78, 80),
+('S00068 ', 68, 80, 64, 66, 82, 58, 70),
+('S00069 ', 88, 80, 84, 86, 82, 68, 50),
+('S00070 ', 88, 70, 84, 86, 82, 58, 80),
+('S00071 ', 88, 70, 84, 86, 92, 58, 80),
+('S00072 ', 88, 80, 84, 86, 82, 88, 80),
+('S00073 ', 88, 70, 84, 76, 82, 88, 80),
+('S00074 ', 88, 80, 84, 86, 82, 58, 80),
+('S00075 ', 88, 90, 94, 96, 92, 98, 80);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `college`
+--
+
+CREATE TABLE `college` (
+  `id` varchar(10) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `University id` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `college`
+--
+
+INSERT INTO `college` (`id`, `name`, `University id`) VALUES
+('COL01', 'College of Engineering', 'UN01'),
+('COL02', 'College of Education', 'UN01'),
+('COL03', 'College of Science', 'UN01'),
+('COL04', 'College of Art', 'UN01'),
+('COL05', 'College of Islamic Science', 'UN01'),
+('COL06', 'College of Law', 'UN01'),
+('COL07', 'College of agriculture Engineering', 'UN01'),
+('COL08', 'College of Administration and Economic', 'UN01'),
+('COL09', 'College of Literature', 'UN01'),
+('COL10', 'College of Language', 'UN01'),
+('COL11', 'College of Medicine', 'UN02'),
+('COL12', 'Dental College', 'UN02'),
+('COL13', 'College of Pharmacy', 'UN02'),
+('COL14', 'College of Veterinary', 'UN02'),
+('COL15', 'College of nursing', 'UN02'),
+('COL16', 'College of Medicine', 'UN03'),
+('COL17', 'Dental College', 'UN03'),
+('COL18', 'College of Engineering', 'UN03'),
+('COL19', 'College of Science', 'UN03'),
+('COL20', 'College of Islamic Science', 'UN03'),
+('COL21', 'College of Law', 'UN03'),
+('COL22', 'College of agriculture Engineering', 'UN03'),
+('COL23', 'College of Administration and Economic', 'UN03'),
+('COL24', 'College of Literature', 'UN03'),
+('COL25', 'College of Language', 'UN03'),
+('COL26', 'College of Medicine', 'UN04'),
+('COL27', 'Dental College', 'UN04'),
+('COL28', 'College of Pharmacy', 'UN04'),
+('COL29', 'College of Engineering', 'UN04'),
+('COL30', 'College of Science', 'UN04'),
+('COL31', 'College of Islamic Science', 'UN04'),
+('COL32', 'College of Law', 'UN04'),
+('COL33', 'College of agriculture Engineering', 'UN04'),
+('COL34', 'College of Administration and Economic', 'UN04'),
+('COL35', 'College of Literature', 'UN04'),
+('COL36', 'College of Language', 'UN04'),
+('COL37', 'College of Engineering Technique Erbil', 'UN05'),
+('COL38', 'Institute of Medicine Technique Erbil', 'UN05'),
+('COL39', 'College of Erbil Technology', 'UN05'),
+('COL40', 'Institute of Administration Technique Erbil', 'UN05'),
+('COL41', 'College of Engineering Technique Slemani', 'UN05'),
+('COL42', 'Institute of Medicine Technique Slemani', 'UN05'),
+('COL43', 'DB Technology College of Slemani Technology', 'UN05'),
+('COL44', 'Institute of Administration Technique Slemani', 'UN05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `department`
+--
+
+CREATE TABLE `department` (
+  `id` varchar(10) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `SchoolStudyType` varchar(10) NOT NULL,
+  `capacity` int(11) NOT NULL,
+  `University id` varchar(10) NOT NULL,
+  `College id` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+CREATE TABLE `filled_departments` (
+  `Sid` varchar(10) NOT NULL,
+  `University id` varchar(10) NOT NULL,
+  `College id` varchar(10) DEFAULT NULL,
+  `Department id` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `filled_departments`
+--
+
+
+
+CREATE TABLE `student` (
+  `id` varchar(10) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `dateOfBirth` date NOT NULL,
+  `SchoolStudyType` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`id`, `name`, `password`, `gender`, `dateOfBirth`, `SchoolStudyType`) VALUES
+('S00001', 'TwanaAbubakrAbdulla', '12345678', 'Male', '2001-02-04', 'Zansty'),
+('S00002', 'EmadAdilQadr', '12345678', 'Male', '2001-01-05', 'Zansty'),
+('S00003', 'ShallawFarsAli', '12345678', 'Male', '2001-01-10', 'Zansty'),
+('S00004', 'CheaJasimAntar', '12345678', 'Male', '2001-01-04', 'Zansty'),
+('S00005', 'DlnyaDlzarBotan', '12345678', 'FeMale', '2001-02-05', 'Zansty'),
+('S00006', 'TaraHamaAbdulla', '12345678', 'FeMale', '2001-02-04', 'Zansty'),
+('S00007', 'ZanaAbubakrAli', '12345678', 'Male', '2001-02-06', 'Zansty'),
+('S00008', 'ShnyarAwniShema', '12345678', 'FeMale', '2001-01-04', 'Zansty'),
+('S00009', 'ZryanDnoAbdulla', '12345678', 'Male', '2001-01-06', 'Zansty'),
+('S00010', 'AlanHawezHama', '12345678', 'Male', '2001-01-10', 'Zansty'),
+('S00011', 'SharaSheroLas', '12345678', 'FeMale', '2001-02-04', 'Zansty'),
+('S00012', 'TwanaJalalKawa', '12345678', 'Male', '2001-02-07', 'Zansty'),
+('S00013', 'SaraAzizKhidir', '12345678', 'FeMale', '2001-02-04', 'Zansty'),
+('S00014', 'LasSaidZana', '12345678', 'Male', '2001-02-12', 'Zansty'),
+('S00015', 'ZinaAbdullKarim', '12345678', 'FeMale', '2001-02-01', 'Zansty'),
+('S00016', 'KarzanSaadiHama', '12345678', 'Male', '2001-02-03', 'Zansty'),
+('S00017', 'KlaraAbubakrAndam', '12345678', 'FeMale', '2001-02-09', 'Zansty'),
+('S00018', 'AsmaAriAli', '12345678', 'FeMale', '2001-02-10', 'Zansty'),
+('S00019', 'AlaSamiAbdulla', '12345678', 'FeMale', '2001-02-09', 'Zansty'),
+('S00020', 'DalyaAbubakrZrebar', '12345678', 'FeMale', '2001-02-03', 'Zansty'),
+('S00021', 'NamiqSdiqAbdulla', '12345678', 'Male', '2001-02-01', 'Zansty'),
+('S00022', 'DanaAbuaalaAbdulla', '12345678', 'Male', '2001-02-12', 'Zansty'),
+('S00023', 'YalldaEdoKibar', '12345678', 'FeMale', '2001-02-02', 'Zansty'),
+('S00024', 'MatinHajiNihhmala', '12345678', 'Male', '2001-01-03', 'Zansty'),
+('S00025', 'BiliaMuhammadAli', '12345678', 'FeMale', '2001-02-11', 'Zansty'),
+('S00026', 'LanaAmirHassan', '12345678', 'FeMale', '2001-02-10', 'Wezhaiy'),
+('S00027', 'AmirShukrAhmed', '12345678', 'Male', '2001-02-01', 'Wezhaiy'),
+('S00028', 'ChawanAzizKawa', '12345678', 'FeMale', '2001-02-08', 'Wezhaiy'),
+('S00029', 'MariaFarsAli', '12345678', 'FeMale', '2001-01-10', 'Wezhaiy'),
+('S00030', 'ShnrweShaydaKarwan', '12345678', 'FeMale', '2001-02-10', 'Wezhaiy'),
+('S00031', 'KarmandDaraBotan', '12345678', 'Male', '2003-01-10', 'Wezhaiy'),
+('S00032', 'ZhewarHawezHamad', '12345678', 'Male', '2003-01-09', 'Wezhaiy'),
+('S00033', 'ShazadFarsAli', '12345678', 'Male', '2003-09-05', 'Wezhaiy'),
+('S00034', 'ShanyaHajiHamad', '12345678', 'FeMale', '2003-01-01', 'Wezhaiy'),
+('S00035', 'DaraKawaBotan', '12345678', 'Male', '2003-01-10', 'Wezhaiy'),
+('S00036', 'HudaySalmHusen', '12345678', 'Male', '2003-01-06', 'Wezhaiy'),
+('S00037', 'BayanEbrahimKhidir', '12345678', 'FeMale', '2003-02-01', 'Wezhaiy'),
+('S00038', 'ZnarZaytoZana', '12345678', 'FeMale', '2003-09-10', 'Wezhaiy'),
+('S00039', 'KamalKawaShamal', '12345678', 'Male', '2003-11-01', 'Wezhaiy'),
+('S00040', 'AhmedBotanSyawash', '12345678', 'Male', '2003-03-10', 'Wezhaiy'),
+('S00041', 'SanaJamalKhidir', '12345678', 'FeMale', '2003-03-01', 'Wezhaiy'),
+('S00042', 'JalalSoranKawa', '12345678', 'Male', '2003-03-03', 'Wezhaiy'),
+('S00043', 'SimaKaiwanHaji', '12345678', 'FeMale', '2003-03-05', 'Wezhaiy'),
+('S00044', 'KhidirAwllaAdam', '12345678', 'Male', '2003-08-12', 'Wezhaiy'),
+('S00045', 'VanaShahoAli', '12345678', 'FeMale', '2003-03-02', 'Wezhaiy'),
+('S00046', 'KhairwllaShemaShamheddin', '12345678', 'Male', '2003-03-12', 'Wezhaiy'),
+('S00047', 'QadirAghaHussen', '12345678', 'Male', '2003-03-11', 'Wezhaiy'),
+('S00048', 'LyaRedarJalal', '12345678', 'FeMale', '2003-05-12', 'Wezhaiy'),
+('S00049', 'AbdullrahmanAbdullaAli', '12345678', 'Male', '2003-02-01', 'Wezhaiy'),
+('S00050', 'NataliaAliHamad', '12345678', 'FeMale', '2003-01-10', 'Wezhaiy'),
+('S00051', 'RahmanRazaAwlla', '12345678', 'Male', '2003-02-04', 'Ayny'),
+('S00052', 'RuqiaRazaAli', '12345678', 'FeMale', '2003-01-01', 'Ayny'),
+('S00053', 'AliHamadAli', '12345678', 'Male', '2003-01-01', 'Ayny'),
+('S00054', 'AmirHassanAndam', '12345678', 'Male', '2003-01-05', 'Ayny'),
+('S00055', 'KalthumAhmedKawa', '12345678', 'FeMale', '2003-01-07', 'Ayny'),
+('S00056', 'MustafaMahmudDana', '12345678', 'Male', '2003-01-04', 'Ayny'),
+('S00057', 'EbrahimBrwaAli', '12345678', 'Male', '2003-01-09', 'Ayny'),
+('S00058', 'SayaShemaKarim', '12345678', 'FeMale', '2003-01-09', 'Ayny'),
+('S00060', 'AsaadSaadiFaruq', '12345678', 'Male', '2003-01-05', 'Ayny'),
+('S00061', 'JawahirAghaHikmat', '12345678', 'FeMale', '2003-02-07', 'Ayny'),
+('S00062', 'HikmatAwlaaMala', '12345678', 'Male', '2003-01-05', 'Ayny'),
+('S00063', 'SaadiAmirFaruq', '12345678', 'Male', '2002-01-09', 'Ayny'),
+('S00064', 'FakhriShwreShwan', '12345678', 'FeMale', '2002-01-02', 'Ayny'),
+('S00065', 'HamzaHassanUsu', '12345678', 'Male', '2002-01-04', 'Ayny'),
+('S00066', 'OsmanSalahFaruq', '12345678', 'Male', '2002-01-05', 'Ayny'),
+('S00067', 'KmaranFaruqKarzan', '12345678', 'Male', '2002-01-05', 'Ayny'),
+('S00068', 'ZainabZanaKawa', '12345678', 'FeMale', '2002-04-05', 'Ayny'),
+('S00069', 'BasharAzizAzad', '12345678', 'Male', '2002-03-05', 'Ayny'),
+('S00070', 'LaylaLawaBarzan', '12345678', 'FeMale', '2002-02-08', 'Ayny'),
+('S00071', 'LuqmanJamihJamal', '12345678', 'Male', '2002-02-11', 'Ayny'),
+('S00072', 'SalimSamirKamal', '12345678', 'Male', '2002-01-09', 'Ayny'),
+('S00073', 'KhalidFakhraddinBarzan', '12345678', 'Male', '2002-02-08', 'Ayny'),
+('S00074', 'FatimaMustafaNuraddin', '12345678', 'FeMale', '2002-02-02', 'Ayny'),
+('S00075', 'SinamAzizMuhammad', '12345678', 'FeMale', '2002-02-09', 'Ayny');
+
