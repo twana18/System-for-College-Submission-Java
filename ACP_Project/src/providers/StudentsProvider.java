@@ -7,9 +7,6 @@ import java.io.*;
 import java.util.Vector;
 
 public class StudentsProvider {
-    final static String[] zanstySubjects = {"Math", "Science", "Chemistry", "Physic", "Arabic", "English", "Kurdish"};
-    final static   String[] WezhaiySubjects = {"Math", "Mezhu", "Abury", "Jugraphia", "Arabic", "English", "Kurdish"};
-    final static String[] aynySubjects = {"Math", "FiqeIslami", "FaraizQuraan", "UsulFiqe", "Arabic", "English", "Kurdish"};
     private Vector<Student> zanstyStudentsHolder = new Vector<>();
     private  Vector<Student> wezhaiyStudentsHolder = new Vector<>();
     private Vector<Student> aynyStudentsHolder = new Vector<>();
