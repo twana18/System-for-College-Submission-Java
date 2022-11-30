@@ -96,5 +96,5 @@ The Tool used is :
 -  [Twana Abubakr ](mailto:gimal@gmail.com)
 -  [Hast Sarbaz ](mailto:gimal@gmail.com)
 -  [Muhammed Jasim ](mailto:gimal@gmail.com)
--  [Shallaw Faris ](mailto:gimal@gmail.com)
+-  [Shallaw Fars ](mailto:gimal@gmail.com)
 -  [Emad Adil ](mailto:gimal@gmail.com?subject)
