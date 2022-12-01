@@ -366,17 +366,43 @@ public class Controller extends Thread {
     }
     
     
-    private void removeDepartment(String department) {
+    private void removeDepartment(List department) {
+    	
+    	
     	try {
-			providers.DepartmentsProvider.removeDepartment(department);	
+    		if(department.get(5).toString().equals('Z')) {
+			
+			providers.DepartmentsProvider.removeDepartment(department.get(0).toString(),department.get(1).toString(),department.get(2).toString(),SchoolStudyType.Zansty);	
 			providers.DepartmentsProvider.zanstySubmitChanges();
 			
 			outputStream.writeObject(new SendOrReceiveData<>("removing-department-successfull", null));
             outputStream.flush();
-	
+			
+			
+
+	        
+			
+		}else if (department.get(5).toString().equals('W')) {
+			providers.DepartmentsProvider.removeDepartment(department.get(0).toString(),department.get(1).toString(),department.get(2).toString(),SchoolStudyType.Wezhaiy);	
+			providers.DepartmentsProvider.wezhaiySubmitChanges();
+			
+			outputStream.writeObject(new SendOrReceiveData<>("removing-department-successfull", null));
+            outputStream.flush();
+	        
+			
+		}else if (department.get(5).toString().equals('A')) {
+			providers.DepartmentsProvider.removeDepartment(department.get(0).toString(),department.get(1).toString(),department.get(2).toString(),SchoolStudyType.Ayny);	
+			providers.DepartmentsProvider.aynySubmitChanges();
+			outputStream.writeObject(new SendOrReceiveData<>("removing-department-successfull", null));
+            outputStream.flush();
+		}        	 
+    			
         	}catch (IOException e) {
         		System.out.println("There was an Error While Removing department");
         	}
+    	
+    	
+    	
     	
     }
     private void addCollege(List college) {
