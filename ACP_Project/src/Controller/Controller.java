@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Vector;
@@ -29,6 +30,8 @@ public class Controller extends Thread {
         DepartmentsProvider.fetchDepartmentsByType(SchoolStudyType.Zansty);
         DepartmentsProvider.fetchDepartmentsByType(SchoolStudyType.Wezhaiy);
         DepartmentsProvider.fetchDepartmentsByType(SchoolStudyType.Ayny);
+        AdminstratorsProvider.fetchAdminstrators();
+        
     }
 
     @Override
@@ -77,6 +80,63 @@ public class Controller extends Thread {
                             outputStream.close();
                             socket.close();
                         }
+                        case "add-admin" ->{
+                        	
+                        	List<String> admininfo = (List<String>) receivedDataFromClient.getObject();
+                        	addAdmin(admininfo);
+                        	
+                        }
+                        case "remove-admin" -> {
+                        	String adminId = (String) receivedDataFromClient.getObject();
+                        	removeAdmin(adminId);
+                        	
+                        }
+                        case "add-department" -> {
+                        	List <String> department= (List) receivedDataFromClient.getObject();
+                        	addDepartment(department);
+                        	
+                        }
+                        case "remove-department" -> {
+                        	List <String> department= (List) receivedDataFromClient.getObject();
+                        	removeDepartment(department);
+                        }
+                        case "add-college" -> {
+                        	List <String> college= (List) receivedDataFromClient.getObject();
+                        	addCollege(college);
+                        	
+                        }
+                        case "remove-college" -> {
+                        	List <String> college= (List) receivedDataFromClient.getObject();
+                        	removeCollege(college);
+                        	
+                        }
+                        case "add-university" -> {
+                        	List <String> university= (List) receivedDataFromClient.getObject();
+                        	addUniversity(university);
+                        	
+                        }
+                        case "remove-university" -> {
+                        	String universityId= (String)receivedDataFromClient.getObject();
+                        	removeUniversity(universityId);
+                        	
+                        }
+                        case "edit-profile" -> {
+                        	List<String> profile = (List<String>) receivedDataFromClient.getObject();
+                        	editProfile(profile);
+                        	
+                        }case "find-department-by-key" ->{
+                        	List<String> departmentKey = (List<String>) receivedDataFromClient.getObject();
+                            findDepartmentByKey(departmentKey);
+                        }
+                        
+                        case "shutdown" -> {
+                        	inputStream.close();
+                        	outputStream.close();
+                        	socket.close();
+                        	System.exit(0);
+                        }
+                        
+                        
                     }
                 } catch (IOException | ClassNotFoundException e) {
                     inputStream.close();
@@ -165,6 +225,35 @@ public class Controller extends Thread {
             System.out.println("IOException in Controller.getCollegeByKey(): " + e.getMessage());
         }
     }
+    
+    
+    private void findDepartmentByKey(List<String> departmentKey) {
+        try {
+            
+            ConcurrentHashMap<List<String>, Department> Aynydepartment = DepartmentsProvider.getDepartmentsByType(SchoolStudyType.Ayny);
+            ConcurrentHashMap<List<String>, Department> Zanstydepartment = DepartmentsProvider.getDepartmentsByType(SchoolStudyType.Zansty);
+            ConcurrentHashMap<List<String>, Department> Wezhaiydepartment = DepartmentsProvider.getDepartmentsByType(SchoolStudyType.Wezhaiy);
+            if (Aynydepartment.get(departmentKey) != null) {
+                outputStream.writeObject(new SendOrReceiveData<>("find-department-by-key-successful", Aynydepartment));
+                outputStream.flush();
+            } else if(Zanstydepartment.get(departmentKey) !=null) {
+            	outputStream.writeObject(new SendOrReceiveData<>("find-department-by-key-successful", Zanstydepartment));
+                outputStream.flush();
+            } else if(Wezhaiydepartment.get(departmentKey) !=null) {
+            	outputStream.writeObject(new SendOrReceiveData<>("find-department-by-key-successful", Wezhaiydepartment));
+                outputStream.flush();
+            }
+            
+            else {
+                outputStream.writeObject(new SendOrReceiveData<>("find-department-by-key-failed", null));
+                outputStream.flush();
+            }
+        } catch (IOException e) {
+            System.out.println("IOException in Controller.getDepartmentByKey(): " + e.getMessage());
+        }
+    }
+    
+    
 
     private void submitOrSaveChangesOfTheStudentForm(Student student) {
         StudentsProvider studentsProvider = new StudentsProvider();
@@ -187,6 +276,7 @@ public class Controller extends Thread {
                 ayOutputStream.writeObject(students);
                 ayOutputStream.close();
             }
+            
         } catch (IOException e) {
             System.out.println("IOException in Controller.saveChangesOfTheStudentForm(): " + e.getMessage());
         } finally {
@@ -198,6 +288,196 @@ public class Controller extends Thread {
             }
         }
 
+    }
+    
+    private void addAdmin(List admininfo) {
+    	
+    	try {
+    	providers.AdminstratorsProvider.addAdminstrator(admininfo.get(0).toString(),admininfo.get(1).toString(),admininfo.get(2).toString());
+    	providers.AdminstratorsProvider.submitChanges();
+    	
+    	 outputStream.writeObject(new SendOrReceiveData<>("adding-admin-successful", null));
+         outputStream.flush();
+			
+    		
+    		
+    	}catch (IOException e) {
+    		System.out.println("There was an Error While Adding Admin");
+    	}
+    	
+    	
+    	
+    	
+    	
+    }
+    private void removeAdmin(String adminId) {
+    	
+    	try {
+    		providers.AdminstratorsProvider.removeAdminstrator(adminId);
+    		providers.AdminstratorsProvider.submitChanges();
+        	
+        	 outputStream.writeObject(new SendOrReceiveData<>("removing-admin-successfull", null));
+             outputStream.flush();
+    			
+        	}catch (IOException e) {
+        		System.out.println("There was an Error While Removing Admin");
+        	}
+
+		
+    }
+    private void addDepartment(List department) {
+    	
+    	
+    	try {
+        	if(department.get(5).toString().equals('Z')) {
+			
+			providers.DepartmentsProvider.addDepartment(department.get(0).toString(),department.get(1).toString(),department.get(2).toString(),department.get(3).toString(),SchoolStudyType.Zansty,(int)department.get(5));	
+			providers.DepartmentsProvider.zanstySubmitChanges();
+			
+			outputStream.writeObject(new SendOrReceiveData<>("adding-department-succesfull", null));
+            outputStream.flush();
+
+	        
+			
+		}else if (department.get(5).toString().equals('W')) {
+			providers.DepartmentsProvider.addDepartment(department.get(0).toString(),department.get(1).toString(),department.get(2).toString(),department.get(3).toString(),SchoolStudyType.Wezhaiy,(int)department.get(5));	
+			providers.DepartmentsProvider.wezhaiySubmitChanges();
+			
+			outputStream.writeObject(new SendOrReceiveData<>("adding-department-succesfull", null));
+            outputStream.flush();
+			
+			
+
+	        
+			
+		}else if (department.get(5).toString().equals('A')) {
+			providers.DepartmentsProvider.addDepartment(department.get(0).toString(),department.get(1).toString(),department.get(2).toString(),department.get(3).toString(),SchoolStudyType.Ayny,(int)department.get(5));
+			providers.DepartmentsProvider.aynySubmitChanges();
+			
+			outputStream.writeObject(new SendOrReceiveData<>("adding-department-succesfull", null));
+            outputStream.flush();
+		}
+        	 
+    			
+        	}catch (IOException e) {
+        		System.out.println("There was an Error While Adding Department");
+        	}
+
+    }
+    
+    
+    private void removeDepartment(List department) {
+    	
+    	
+    	try {
+    		if(department.get(5).toString().equals('Z')) {
+			
+			providers.DepartmentsProvider.removeDepartment(department.get(0).toString(),department.get(1).toString(),department.get(2).toString(),SchoolStudyType.Zansty);	
+			providers.DepartmentsProvider.zanstySubmitChanges();
+			
+			outputStream.writeObject(new SendOrReceiveData<>("removing-department-successfull", null));
+            outputStream.flush();
+			
+			
+
+	        
+			
+		}else if (department.get(5).toString().equals('W')) {
+			providers.DepartmentsProvider.removeDepartment(department.get(0).toString(),department.get(1).toString(),department.get(2).toString(),SchoolStudyType.Wezhaiy);	
+			providers.DepartmentsProvider.wezhaiySubmitChanges();
+			
+			outputStream.writeObject(new SendOrReceiveData<>("removing-department-successfull", null));
+            outputStream.flush();
+	        
+			
+		}else if (department.get(5).toString().equals('A')) {
+			providers.DepartmentsProvider.removeDepartment(department.get(0).toString(),department.get(1).toString(),department.get(2).toString(),SchoolStudyType.Ayny);	
+			providers.DepartmentsProvider.aynySubmitChanges();
+			outputStream.writeObject(new SendOrReceiveData<>("removing-department-successfull", null));
+            outputStream.flush();
+		}        	 
+    			
+        	}catch (IOException e) {
+        		System.out.println("There was an Error While Removing department");
+        	}
+    	
+    	
+    	
+    	
+    }
+    private void addCollege(List college) {
+    
+    	try {
+        	providers.CollegesProvider.addCollege(college.get(0).toString(),college.get(1).toString(),college.get(2).toString());
+        	
+        	 outputStream.writeObject(new SendOrReceiveData<>("adding-college-successfull", null));
+             outputStream.flush();
+    			
+        	}catch (IOException e) {
+        		System.out.println("There was an Error While Adding College");
+        	}
+    }
+    private void removeCollege(List college) {
+
+    	try {
+        	providers.CollegesProvider.removeCollege(college.get(0).toString(),college.get(1).toString());
+        	
+        	 outputStream.writeObject(new SendOrReceiveData<>("removing-college-successfull", null));
+             outputStream.flush();
+    			
+        	}catch (IOException e) {
+        		System.out.println("There was an Error While Removing College");
+        	}
+    	
+    }
+    private void addUniversity(List university) {
+    	
+    	try {
+        	providers.UniversitiesProvider.addUniversity(university.get(0).toString(),university.get(1).toString(),university.get(2).toString());
+        	providers.UniversitiesProvider.submitChanges();
+        	 outputStream.writeObject(new SendOrReceiveData<>("adding-university-successfull", null));
+             outputStream.flush();
+    			
+        	}catch (IOException e) {
+        		System.out.println("There was an Error While Adding University");
+        	}
+    	
+    	
+    	
+    }
+    private void removeUniversity(String universityId) {
+    	try {
+        	providers.UniversitiesProvider.removeUniversity(universityId);
+        	providers.UniversitiesProvider.submitChanges();
+        	
+        	 outputStream.writeObject(new SendOrReceiveData<>("removing-university-successfull", null));
+             outputStream.flush();
+    			
+        	}catch (IOException e) {
+        		System.out.println("There was an Error While Removing University");
+        	}
+    	
+    	
+    	
+    }
+    
+    private void editProfile(List profile) {
+    	
+    	try {
+        	providers.AdminstratorsProvider.removeAdminstrator(profile.get(0).toString());
+        	providers.AdminstratorsProvider.addAdminstrator(profile.get(0).toString(),profile.get(1).toString(),profile.get(2).toString());
+        	providers.AdminstratorsProvider.submitChanges();
+        	
+        	 outputStream.writeObject(new SendOrReceiveData<>("editing-admin-successfull", null));
+             outputStream.flush();
+    			
+        	}catch (IOException e) {
+        		System.out.println("There was an Error While Editing Profile");
+        	}
+    	
+    	
+    	
+    	
     }
 
 }
